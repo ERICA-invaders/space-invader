@@ -1,0 +1,673 @@
+[INFO|3:21:45]: Started loading resources. 
+[FINE|3:21:45]: Sprite Ship loaded. 
+[FINE|3:21:45]: Sprite ShipDestroyed loaded. 
+[FINE|3:21:45]: Sprite Bullet loaded. 
+[FINE|3:21:45]: Sprite EnemyBullet loaded. 
+[FINE|3:21:45]: Sprite EnemyShipA1 loaded. 
+[FINE|3:21:45]: Sprite EnemyShipA2 loaded. 
+[FINE|3:21:45]: Sprite EnemyShipB1 loaded. 
+[FINE|3:21:45]: Sprite EnemyShipB2 loaded. 
+[FINE|3:21:45]: Sprite EnemyShipC1 loaded. 
+[FINE|3:21:45]: Sprite EnemyShipC2 loaded. 
+[FINE|3:21:45]: Sprite EnemyShipSpecial loaded. 
+[FINE|3:21:45]: Sprite Explosion loaded. 
+[INFO|3:21:45]: Finished loading the sprites. 
+[INFO|3:21:45]: Finished loading the fonts. 
+[INFO|3:21:45]: Starting 448x520 title screen at 60 fps. 
+[INFO|3:21:46]: Closing title screen. 
+[INFO|3:21:46]: Starting 448x520 game screen at 60 fps. 
+[INFO|3:21:46]: Initializing 5x4 ship formation in (20,100) 
+[INFO|3:21:54]: Destroyed ship in (4,3) 
+[INFO|3:21:54]: Destroyed ship in (3,3) 
+[INFO|3:21:55]: Removed enemy 3 from column 3 
+[INFO|3:21:55]: Removed enemy 3 from column 4 
+[INFO|3:21:55]: Destroyed ship in (3,2) 
+[INFO|3:21:55]: Destroyed ship in (4,2) 
+[INFO|3:21:55]: Removed enemy 2 from column 3 
+[INFO|3:21:55]: Removed enemy 2 from column 4 
+[INFO|3:21:56]: Destroyed ship in (3,1) 
+[INFO|3:21:56]: Destroyed ship in (2,3) 
+[INFO|3:21:56]: Removed enemy 3 from column 2 
+[INFO|3:21:56]: Removed enemy 1 from column 3 
+[INFO|3:21:56]: Destroyed ship in (2,2) 
+[INFO|3:21:56]: Destroyed ship in (2,1) 
+[INFO|3:21:57]: Removed enemy 1 from column 2 
+[INFO|3:21:57]: Removed enemy 2 from column 2 
+[INFO|3:21:57]: Destroyed ship in (1,2) 
+[INFO|3:21:57]: Destroyed ship in (1,3) 
+[INFO|3:21:57]: Destroyed ship in (0,3) 
+[INFO|3:21:57]: Removed enemy 3 from column 0 
+[INFO|3:21:57]: Removed enemy 2 from column 1 
+[INFO|3:21:57]: Removed enemy 3 from column 1 
+[INFO|3:21:57]: Destroyed ship in (0,2) 
+[INFO|3:21:57]: Removed enemy 2 from column 0 
+[INFO|3:21:57]: Destroyed ship in (0,1) 
+[INFO|3:21:58]: Removed enemy 1 from column 0 
+[INFO|3:21:58]: Destroyed ship in (0,0) 
+[INFO|3:21:58]: Shooters list reduced to 4 members. 
+[INFO|3:21:58]: Removed enemy 0 from column 0 
+[INFO|3:21:58]: Removed column 0 
+[INFO|3:21:58]: Destroyed ship in (0,1) 
+[INFO|3:21:58]: Removed enemy 1 from column 0 
+[INFO|3:21:58]: Destroyed ship in (0,0) 
+[INFO|3:21:58]: Shooters list reduced to 3 members. 
+[INFO|3:21:59]: Removed enemy 0 from column 0 
+[INFO|3:21:59]: Removed column 0 
+[INFO|3:21:59]: Destroyed ship in (0,0) 
+[INFO|3:21:59]: Shooters list reduced to 2 members. 
+[INFO|3:21:59]: Removed enemy 0 from column 0 
+[INFO|3:21:59]: Removed column 0 
+[INFO|3:21:59]: Destroyed ship in (0,0) 
+[INFO|3:21:59]: Shooters list reduced to 1 members. 
+[INFO|3:21:59]: Removed enemy 0 from column 0 
+[INFO|3:21:59]: Removed column 0 
+[INFO|3:22:00]: Destroyed ship in (0,1) 
+[INFO|3:22:00]: Removed enemy 1 from column 0 
+[INFO|3:22:00]: Destroyed ship in (0,0) 
+[INFO|3:22:00]: Shooters list reduced to 0 members. 
+[INFO|3:22:02]: Screen cleared with a score of 600 
+[INFO|3:22:02]: Closing game screen. 
+[INFO|3:22:02]: Starting 448x520 game screen at 60 fps. 
+[INFO|3:22:02]: Initializing 5x5 ship formation in (20,100) 
+[INFO|3:22:08]: Destroyed ship in (4,4) 
+[INFO|3:22:09]: Removed enemy 4 from column 4 
+[INFO|3:22:09]: Destroyed ship in (3,4) 
+[INFO|3:22:09]: Destroyed ship in (2,4) 
+[INFO|3:22:09]: Removed enemy 4 from column 2 
+[INFO|3:22:09]: Removed enemy 4 from column 3 
+[INFO|3:22:09]: Destroyed ship in (1,4) 
+[INFO|3:22:10]: Destroyed ship in (1,3) 
+[INFO|3:22:10]: Removed enemy 3 from column 1 
+[INFO|3:22:10]: Removed enemy 4 from column 1 
+[INFO|3:22:10]: Destroyed ship in (1,2) 
+[INFO|3:22:10]: Destroyed ship in (2,3) 
+[INFO|3:22:11]: Destroyed ship in (3,3) 
+[INFO|3:22:11]: Removed enemy 2 from column 1 
+[INFO|3:22:11]: Removed enemy 3 from column 2 
+[INFO|3:22:11]: Removed enemy 3 from column 3 
+[INFO|3:22:11]: Destroyed ship in (2,1) 
+[INFO|3:22:11]: Destroyed ship in (4,3) 
+[INFO|3:22:11]: Removed enemy 1 from column 2 
+[INFO|3:22:11]: Removed enemy 3 from column 4 
+[INFO|3:22:11]: Destroyed ship in (3,0) 
+[INFO|3:22:12]: Removed enemy 0 from column 3 
+[INFO|3:22:12]: Destroyed ship in (4,0) 
+[INFO|3:22:12]: Destroyed ship in (4,2) 
+[INFO|3:22:12]: Removed enemy 0 from column 4 
+[INFO|3:22:12]: Removed enemy 2 from column 4 
+[INFO|3:22:12]: Destroyed ship in (3,1) 
+[INFO|3:22:12]: Removed enemy 1 from column 3 
+[INFO|3:22:12]: Destroyed ship in (2,1) 
+[INFO|3:22:13]: Removed enemy 1 from column 2 
+[INFO|3:22:13]: Destroyed ship in (1,1) 
+[INFO|3:22:13]: Destroyed ship in (0,4) 
+[INFO|3:22:13]: Removed enemy 4 from column 0 
+[INFO|3:22:13]: Removed enemy 1 from column 1 
+[INFO|3:22:13]: Destroyed ship in (0,3) 
+[INFO|3:22:13]: Removed enemy 3 from column 0 
+[INFO|3:22:14]: Destroyed ship in (0,2) 
+[INFO|3:22:14]: Removed enemy 2 from column 0 
+[INFO|3:22:14]: Destroyed ship in (0,1) 
+[INFO|3:22:14]: Removed enemy 1 from column 0 
+[INFO|3:22:14]: Destroyed ship in (1,0) 
+[INFO|3:22:14]: Shooters list reduced to 4 members. 
+[INFO|3:22:14]: Removed enemy 0 from column 1 
+[INFO|3:22:14]: Removed column 1 
+[INFO|3:22:15]: Destroyed ship in (1,0) 
+[INFO|3:22:15]: Shooters list reduced to 3 members. 
+[INFO|3:22:15]: Removed enemy 0 from column 1 
+[INFO|3:22:15]: Removed column 1 
+[INFO|3:22:15]: Destroyed ship in (1,0) 
+[INFO|3:22:15]: Shooters list reduced to 2 members. 
+[INFO|3:22:15]: Removed enemy 0 from column 1 
+[INFO|3:22:15]: Removed column 1 
+[INFO|3:22:16]: Destroyed ship in (1,0) 
+[INFO|3:22:16]: Shooters list reduced to 1 members. 
+[INFO|3:22:16]: Removed enemy 0 from column 1 
+[INFO|3:22:16]: Removed column 1 
+[INFO|3:22:17]: Destroyed ship in (0,0) 
+[INFO|3:22:17]: Shooters list reduced to 0 members. 
+[INFO|3:22:18]: Screen cleared with a score of 1250 
+[INFO|3:22:18]: Closing game screen. 
+[INFO|3:22:18]: Starting 448x520 game screen at 60 fps. 
+[INFO|3:22:18]: Initializing 6x5 ship formation in (20,100) 
+[INFO|3:22:26]: Destroyed ship in (5,4) 
+[INFO|3:22:26]: Destroyed ship in (4,4) 
+[INFO|3:22:26]: Removed enemy 4 from column 4 
+[INFO|3:22:26]: Removed enemy 4 from column 5 
+[INFO|3:22:26]: Destroyed ship in (3,4) 
+[INFO|3:22:26]: Destroyed ship in (2,4) 
+[INFO|3:22:27]: Removed enemy 4 from column 2 
+[INFO|3:22:27]: Removed enemy 4 from column 3 
+[INFO|3:22:27]: Destroyed ship in (1,4) 
+[INFO|3:22:27]: Destroyed ship in (0,4) 
+[INFO|3:22:27]: Removed enemy 4 from column 0 
+[INFO|3:22:27]: Removed enemy 4 from column 1 
+[INFO|3:22:27]: Destroyed ship in (0,3) 
+[INFO|3:22:28]: Destroyed ship in (1,3) 
+[INFO|3:22:28]: Removed enemy 3 from column 0 
+[INFO|3:22:28]: Removed enemy 3 from column 1 
+[INFO|3:22:28]: Destroyed ship in (1,2) 
+[INFO|3:22:28]: Removed enemy 2 from column 1 
+[INFO|3:22:28]: Destroyed ship in (1,0) 
+[INFO|3:22:29]: Destroyed ship in (2,3) 
+[INFO|3:22:29]: Removed enemy 0 from column 1 
+[INFO|3:22:29]: Removed enemy 3 from column 2 
+[INFO|3:22:29]: Destroyed ship in (3,3) 
+[INFO|3:22:29]: Removed enemy 3 from column 3 
+[INFO|3:22:29]: Destroyed ship in (2,0) 
+[INFO|3:22:29]: Destroyed ship in (4,3) 
+[INFO|3:22:30]: Removed enemy 0 from column 2 
+[INFO|3:22:30]: Removed enemy 3 from column 4 
+[INFO|3:22:30]: Destroyed ship in (3,0) 
+[INFO|3:22:30]: Destroyed ship in (5,3) 
+[INFO|3:22:30]: Removed enemy 0 from column 3 
+[INFO|3:22:30]: Removed enemy 3 from column 5 
+[INFO|3:22:30]: Destroyed ship in (4,1) 
+[INFO|3:22:30]: Removed enemy 1 from column 4 
+[INFO|3:22:30]: Destroyed ship in (4,1) 
+[INFO|3:22:30]: Destroyed ship in (3,1) 
+[INFO|3:22:30]: Removed enemy 1 from column 3 
+[INFO|3:22:30]: Removed enemy 1 from column 4 
+[INFO|3:22:31]: Destroyed ship in (2,0) 
+[INFO|3:22:31]: Destroyed ship in (2,1) 
+[INFO|3:22:31]: Shooters list reduced to 5 members. 
+[INFO|3:22:31]: Removed enemy 0 from column 2 
+[INFO|3:22:31]: Removed enemy 1 from column 2 
+[INFO|3:22:31]: Removed column 2 
+[INFO|3:22:32]: Destroyed ship in (2,0) 
+[INFO|3:22:32]: Shooters list reduced to 4 members. 
+[INFO|3:22:32]: Removed enemy 0 from column 2 
+[INFO|3:22:32]: Removed column 2 
+[INFO|3:22:32]: Destroyed ship in (2,0) 
+[INFO|3:22:32]: Shooters list reduced to 3 members. 
+[INFO|3:22:33]: Formation now moving down 5 
+[INFO|3:22:33]: Removed enemy 0 from column 2 
+[INFO|3:22:33]: Removed column 2 
+[INFO|3:22:34]: Formation now moving left 1 
+[INFO|3:22:34]: Destroyed ship in (1,0) 
+[INFO|3:22:34]: Shooters list reduced to 2 members. 
+[INFO|3:22:34]: Removed enemy 0 from column 1 
+[INFO|3:22:34]: Removed column 1 
+[INFO|3:22:34]: Destroyed ship in (0,2) 
+[INFO|3:22:34]: Removed enemy 2 from column 0 
+[INFO|3:22:35]: Destroyed ship in (0,1) 
+[INFO|3:22:35]: Removed enemy 1 from column 0 
+[INFO|3:22:35]: Destroyed ship in (0,0) 
+[INFO|3:22:35]: Shooters list reduced to 1 members. 
+[INFO|3:22:35]: Removed enemy 0 from column 0 
+[INFO|3:22:35]: Removed column 0 
+[INFO|3:22:37]: Destroyed ship in (0,2) 
+[INFO|3:22:38]: Removed enemy 2 from column 0 
+[INFO|3:22:38]: Destroyed ship in (0,1) 
+[INFO|3:22:38]: Removed enemy 1 from column 0 
+[INFO|3:22:38]: Destroyed ship in (0,0) 
+[INFO|3:22:38]: Shooters list reduced to 0 members. 
+[INFO|3:22:40]: Screen cleared with a score of 1990 
+[INFO|3:22:40]: Closing game screen. 
+[INFO|3:22:40]: Starting 448x520 game screen at 60 fps. 
+[INFO|3:22:40]: Initializing 6x6 ship formation in (20,100) 
+[INFO|3:22:47]: Destroyed ship in (5,5) 
+[INFO|3:22:47]: Destroyed ship in (4,5) 
+[INFO|3:22:47]: Removed enemy 5 from column 4 
+[INFO|3:22:47]: Removed enemy 5 from column 5 
+[INFO|3:22:47]: Destroyed ship in (3,5) 
+[INFO|3:22:47]: Destroyed ship in (2,5) 
+[INFO|3:22:48]: Removed enemy 5 from column 2 
+[INFO|3:22:48]: Removed enemy 5 from column 3 
+[INFO|3:22:48]: Destroyed ship in (1,5) 
+[INFO|3:22:48]: Removed enemy 5 from column 1 
+[INFO|3:22:48]: Destroyed ship in (1,4) 
+[INFO|3:22:48]: Destroyed ship in (1,0) 
+[INFO|3:22:48]: Destroyed ship in (2,4) 
+[INFO|3:22:49]: Removed enemy 0 from column 1 
+[INFO|3:22:49]: Removed enemy 4 from column 1 
+[INFO|3:22:49]: Removed enemy 4 from column 2 
+[INFO|3:22:49]: Destroyed ship in (2,3) 
+[INFO|3:22:49]: Destroyed ship in (3,4) 
+[INFO|3:22:49]: Removed enemy 3 from column 2 
+[INFO|3:22:49]: Removed enemy 4 from column 3 
+[INFO|3:22:49]: Destroyed ship in (3,3) 
+[INFO|3:22:49]: Destroyed ship in (4,4) 
+[INFO|3:22:49]: Removed enemy 3 from column 3 
+[INFO|3:22:49]: Removed enemy 4 from column 4 
+[INFO|3:22:49]: Destroyed ship in (4,3) 
+[INFO|3:22:50]: Destroyed ship in (4,2) 
+[INFO|3:22:50]: Removed enemy 2 from column 4 
+[INFO|3:22:50]: Removed enemy 3 from column 4 
+[INFO|3:22:50]: Destroyed ship in (3,2) 
+[INFO|3:22:50]: Destroyed ship in (3,0) 
+[INFO|3:22:50]: Destroyed ship in (2,2) 
+[INFO|3:22:50]: Removed enemy 2 from column 2 
+[INFO|3:22:50]: Removed enemy 0 from column 3 
+[INFO|3:22:50]: Removed enemy 2 from column 3 
+[INFO|3:22:51]: Destroyed ship in (2,1) 
+[INFO|3:22:51]: Removed enemy 1 from column 2 
+[INFO|3:22:51]: Destroyed ship in (0,5) 
+[INFO|3:22:51]: Destroyed ship in (1,2) 
+[INFO|3:22:51]: Removed enemy 5 from column 0 
+[INFO|3:22:51]: Removed enemy 2 from column 1 
+[INFO|3:22:51]: Destroyed ship in (0,3) 
+[INFO|3:22:52]: Removed enemy 3 from column 0 
+[INFO|3:22:52]: Destroyed ship in (0,3) 
+[INFO|3:22:52]: Removed enemy 3 from column 0 
+[INFO|3:22:52]: Destroyed ship in (0,2) 
+[INFO|3:22:52]: Removed enemy 2 from column 0 
+[INFO|3:22:53]: Destroyed ship in (0,1) 
+[INFO|3:22:53]: Destroyed ship in (1,1) 
+[INFO|3:22:53]: Removed enemy 1 from column 0 
+[INFO|3:22:53]: Removed enemy 1 from column 1 
+[INFO|3:22:53]: Destroyed ship in (1,0) 
+[INFO|3:22:53]: Shooters list reduced to 5 members. 
+[INFO|3:22:53]: Removed enemy 0 from column 1 
+[INFO|3:22:53]: Removed column 1 
+[INFO|3:22:53]: Formation now moving down 5 
+[INFO|3:22:53]: Destroyed ship in (1,0) 
+[INFO|3:22:53]: Shooters list reduced to 4 members. 
+[INFO|3:22:53]: Removed enemy 0 from column 1 
+[INFO|3:22:54]: Removed column 1 
+[INFO|3:22:54]: Destroyed ship in (1,0) 
+[INFO|3:22:54]: Shooters list reduced to 3 members. 
+[INFO|3:22:54]: Removed enemy 0 from column 1 
+[INFO|3:22:54]: Removed column 1 
+[INFO|3:22:54]: Destroyed ship in (1,1) 
+[INFO|3:22:54]: Destroyed ship in (2,4) 
+[INFO|3:22:54]: Removed enemy 1 from column 1 
+[INFO|3:22:54]: Removed enemy 4 from column 2 
+[INFO|3:22:54]: Formation now moving left 1 
+[INFO|3:22:55]: Destroyed ship in (2,1) 
+[INFO|3:22:55]: Removed enemy 1 from column 2 
+[INFO|3:22:55]: Destroyed ship in (2,2) 
+[INFO|3:22:55]: Removed enemy 2 from column 2 
+[INFO|3:22:55]: Destroyed ship in (2,0) 
+[INFO|3:22:55]: Destroyed ship in (2,1) 
+[INFO|3:22:55]: Shooters list reduced to 2 members. 
+[INFO|3:22:55]: Removed enemy 0 from column 2 
+[INFO|3:22:55]: Removed enemy 1 from column 2 
+[INFO|3:22:55]: Removed column 2 
+[INFO|3:22:57]: Destroyed ship in (1,0) 
+[INFO|3:22:57]: Shooters list reduced to 1 members. 
+[INFO|3:22:57]: Removed enemy 0 from column 1 
+[INFO|3:22:57]: Removed column 1 
+[INFO|3:22:58]: Formation now moving down 3 
+[INFO|3:22:59]: Destroyed ship in (0,0) 
+[INFO|3:22:59]: Shooters list reduced to 0 members. 
+[INFO|3:23:00]: Screen cleared with a score of 2910 
+[INFO|3:23:00]: Closing game screen. 
+[INFO|3:23:00]: Starting 448x520 game screen at 60 fps. 
+[INFO|3:23:00]: Initializing 7x6 ship formation in (20,100) 
+[INFO|3:23:07]: Destroyed ship in (5,5) 
+[INFO|3:23:07]: Removed enemy 5 from column 5 
+[INFO|3:23:07]: Destroyed ship in (6,5) 
+[INFO|3:23:07]: Removed enemy 5 from column 6 
+[INFO|3:23:07]: Destroyed ship in (5,2) 
+[INFO|3:23:07]: Destroyed ship in (5,4) 
+[INFO|3:23:08]: Removed enemy 2 from column 5 
+[INFO|3:23:08]: Removed enemy 4 from column 5 
+[INFO|3:23:08]: Destroyed ship in (4,5) 
+[INFO|3:23:08]: Destroyed ship in (5,1) 
+[INFO|3:23:08]: Removed enemy 5 from column 4 
+[INFO|3:23:08]: Removed enemy 1 from column 5 
+[INFO|3:23:08]: Destroyed ship in (3,4) 
+[INFO|3:23:08]: Destroyed ship in (3,5) 
+[INFO|3:23:08]: Destroyed ship in (2,5) 
+[INFO|3:23:08]: Removed enemy 5 from column 2 
+[INFO|3:23:08]: Removed enemy 4 from column 3 
+[INFO|3:23:08]: Removed enemy 5 from column 3 
+[INFO|3:23:08]: Destroyed ship in (1,5) 
+[INFO|3:23:09]: Removed enemy 5 from column 1 
+[INFO|3:23:09]: Destroyed ship in (0,5) 
+[INFO|3:23:09]: Removed enemy 5 from column 0 
+[INFO|3:23:09]: Destroyed ship in (0,2) 
+[INFO|3:23:09]: Removed enemy 2 from column 0 
+[INFO|3:23:10]: Destroyed ship in (0,3) 
+[INFO|3:23:10]: Removed enemy 3 from column 0 
+[INFO|3:23:10]: Destroyed ship in (0,2) 
+[INFO|3:23:10]: Removed enemy 2 from column 0 
+[INFO|3:23:10]: Destroyed ship in (1,4) 
+[INFO|3:23:11]: Removed enemy 4 from column 1 
+[INFO|3:23:11]: Destroyed ship in (1,3) 
+[INFO|3:23:11]: Destroyed ship in (2,4) 
+[INFO|3:23:11]: Removed enemy 3 from column 1 
+[INFO|3:23:11]: Removed enemy 4 from column 2 
+[INFO|3:23:11]: Destroyed ship in (1,2) 
+[INFO|3:23:11]: Removed enemy 2 from column 1 
+[INFO|3:23:11]: Destroyed ship in (1,0) 
+[INFO|3:23:12]: Removed enemy 0 from column 1 
+[INFO|3:23:12]: Destroyed ship in (0,1) 
+[INFO|3:23:12]: Destroyed ship in (1,0) 
+[INFO|3:23:12]: Shooters list reduced to 6 members. 
+[INFO|3:23:12]: Formation now moving down 5 
+[INFO|3:23:12]: Removed enemy 1 from column 0 
+[INFO|3:23:12]: Removed enemy 0 from column 1 
+[INFO|3:23:12]: Removed column 1 
+[INFO|3:23:12]: Destroyed ship in (1,3) 
+[INFO|3:23:12]: Removed enemy 3 from column 1 
+[INFO|3:23:12]: Destroyed ship in (2,3) 
+[INFO|3:23:12]: Removed enemy 3 from column 2 
+[INFO|3:23:13]: Destroyed ship in (3,4) 
+[INFO|3:23:13]: Destroyed ship in (2,2) 
+[INFO|3:23:13]: Removed enemy 2 from column 2 
+[INFO|3:23:13]: Removed enemy 4 from column 3 
+[INFO|3:23:13]: Destroyed ship in (4,1) 
+[INFO|3:23:13]: Formation now moving left 1 
+[INFO|3:23:13]: Removed enemy 1 from column 4 
+[INFO|3:23:13]: Destroyed ship in (5,4) 
+[INFO|3:23:13]: Destroyed ship in (4,0) 
+[INFO|3:23:13]: Shooters list reduced to 5 members. 
+[INFO|3:23:13]: Removed enemy 0 from column 4 
+[INFO|3:23:13]: Removed enemy 4 from column 5 
+[INFO|3:23:13]: Removed column 4 
+[INFO|3:23:14]: Destroyed ship in (4,3) 
+[INFO|3:23:14]: Removed enemy 3 from column 4 
+[INFO|3:23:14]: Destroyed ship in (4,2) 
+[INFO|3:23:14]: Removed enemy 2 from column 4 
+[INFO|3:23:15]: Destroyed ship in (4,0) 
+[INFO|3:23:15]: Removed enemy 0 from column 4 
+[INFO|3:23:15]: Destroyed ship in (3,3) 
+[INFO|3:23:15]: Removed enemy 3 from column 3 
+[INFO|3:23:15]: Destroyed ship in (3,2) 
+[INFO|3:23:15]: Removed enemy 2 from column 3 
+[INFO|3:23:16]: Destroyed ship in (3,1) 
+[INFO|3:23:16]: Removed enemy 1 from column 3 
+[INFO|3:23:16]: Destroyed ship in (2,1) 
+[INFO|3:23:16]: Formation now moving down 3 
+[INFO|3:23:16]: Removed enemy 1 from column 2 
+[INFO|3:23:16]: Destroyed ship in (1,2) 
+[INFO|3:23:16]: Removed enemy 2 from column 1 
+[INFO|3:23:17]: Formation now moving right 2 
+[INFO|3:23:17]: Destroyed ship in (0,0) 
+[INFO|3:23:17]: Shooters list reduced to 4 members. 
+[INFO|3:23:17]: Removed enemy 0 from column 0 
+[INFO|3:23:17]: Removed column 0 
+[INFO|3:23:19]: Destroyed ship in (0,1) 
+[INFO|3:23:20]: Removed enemy 1 from column 0 
+[INFO|3:23:20]: Formation now moving down 5 
+[INFO|3:23:20]: Destroyed ship in (0,0) 
+[INFO|3:23:20]: Shooters list reduced to 3 members. 
+[INFO|3:23:20]: Removed enemy 0 from column 0 
+[INFO|3:23:20]: Removed column 0 
+[INFO|3:23:20]: Destroyed ship in (0,0) 
+[INFO|3:23:20]: Shooters list reduced to 2 members. 
+[INFO|3:23:20]: Removed enemy 0 from column 0 
+[INFO|3:23:20]: Removed column 0 
+[INFO|3:23:20]: Destroyed ship in (0,0) 
+[INFO|3:23:20]: Shooters list reduced to 1 members. 
+[INFO|3:23:20]: Removed enemy 0 from column 0 
+[INFO|3:23:20]: Removed column 0 
+[INFO|3:23:21]: Formation now moving left 1 
+[INFO|3:23:21]: Destroyed ship in (0,0) 
+[INFO|3:23:21]: Shooters list reduced to 0 members. 
+[INFO|3:23:22]: Screen cleared with a score of 3950 
+[INFO|3:23:22]: Closing game screen. 
+[INFO|3:23:22]: Starting 448x520 game screen at 60 fps. 
+[INFO|3:23:22]: Initializing 7x7 ship formation in (20,100) 
+[INFO|3:23:29]: Destroyed ship in (5,5) 
+[INFO|3:23:30]: Destroyed ship in (4,6) 
+[INFO|3:23:30]: Removed enemy 6 from column 4 
+[INFO|3:23:30]: Removed enemy 5 from column 5 
+[INFO|3:23:30]: Destroyed ship in (3,6) 
+[INFO|3:23:30]: Removed enemy 6 from column 3 
+[INFO|3:23:30]: Destroyed ship in (4,1) 
+[INFO|3:23:30]: Destroyed ship in (3,5) 
+[INFO|3:23:30]: Removed enemy 5 from column 3 
+[INFO|3:23:30]: Removed enemy 1 from column 4 
+[INFO|3:23:30]: Destroyed ship in (2,6) 
+[INFO|3:23:30]: Destroyed ship in (3,4) 
+[INFO|3:23:31]: Removed enemy 6 from column 2 
+[INFO|3:23:31]: Removed enemy 4 from column 3 
+[INFO|3:23:31]: Destroyed ship in (1,6) 
+[INFO|3:23:31]: Removed enemy 6 from column 1 
+[INFO|3:23:31]: Destroyed ship in (1,4) 
+[INFO|3:23:31]: Destroyed ship in (0,6) 
+[INFO|3:23:31]: Removed enemy 6 from column 0 
+[INFO|3:23:31]: Removed enemy 4 from column 1 
+[INFO|3:23:31]: Destroyed ship in (0,5) 
+[INFO|3:23:31]: Removed enemy 5 from column 0 
+[INFO|3:23:32]: Destroyed ship in (0,4) 
+[INFO|3:23:32]: Removed enemy 4 from column 0 
+[INFO|3:23:32]: Destroyed ship in (1,4) 
+[INFO|3:23:32]: Removed enemy 4 from column 1 
+[INFO|3:23:32]: Destroyed ship in (2,5) 
+[INFO|3:23:32]: Removed enemy 5 from column 2 
+[INFO|3:23:32]: Destroyed ship in (1,3) 
+[INFO|3:23:33]: Removed enemy 3 from column 1 
+[INFO|3:23:33]: Destroyed ship in (2,4) 
+[INFO|3:23:33]: Removed enemy 4 from column 2 
+[INFO|3:23:33]: Destroyed ship in (2,3) 
+[INFO|3:23:33]: Removed enemy 3 from column 2 
+[INFO|3:23:33]: Destroyed ship in (3,3) 
+[INFO|3:23:33]: Formation now moving down 5 
+[INFO|3:23:33]: Removed enemy 3 from column 3 
+[INFO|3:23:33]: Destroyed ship in (4,4) 
+[INFO|3:23:33]: Destroyed ship in (3,2) 
+[INFO|3:23:33]: Removed enemy 2 from column 3 
+[INFO|3:23:33]: Removed enemy 4 from column 4 
+[INFO|3:23:34]: Destroyed ship in (5,5) 
+[INFO|3:23:34]: Removed enemy 5 from column 5 
+[INFO|3:23:34]: Destroyed ship in (6,6) 
+[INFO|3:23:34]: Removed enemy 6 from column 6 
+[INFO|3:23:34]: Destroyed ship in (6,5) 
+[INFO|3:23:34]: Removed enemy 5 from column 6 
+[INFO|3:23:34]: Formation now moving left 1 
+[INFO|3:23:35]: Destroyed ship in (6,3) 
+[INFO|3:23:35]: Destroyed ship in (5,4) 
+[INFO|3:23:35]: Removed enemy 4 from column 5 
+[INFO|3:23:35]: Removed enemy 3 from column 6 
+[INFO|3:23:35]: Destroyed ship in (5,3) 
+[INFO|3:23:35]: Removed enemy 3 from column 5 
+[INFO|3:23:35]: Destroyed ship in (5,1) 
+[INFO|3:23:35]: Destroyed ship in (6,3) 
+[INFO|3:23:36]: Removed enemy 1 from column 5 
+[INFO|3:23:36]: Removed enemy 3 from column 6 
+[INFO|3:23:37]: A special ship appears 
+[INFO|3:23:37]: Formation now moving down 3 
+[INFO|3:23:38]: Destroyed ship in (6,2) 
+[INFO|3:23:38]: Removed enemy 2 from column 6 
+[INFO|3:23:38]: Destroyed ship in (5,1) 
+[INFO|3:23:38]: Formation now moving right 2 
+[INFO|3:23:38]: Removed enemy 1 from column 5 
+[INFO|3:23:39]: Destroyed ship in (4,3) 
+[INFO|3:23:39]: Destroyed ship in (5,0) 
+[INFO|3:23:39]: Shooters list reduced to 6 members. 
+[INFO|3:23:39]: Removed enemy 3 from column 4 
+[INFO|3:23:39]: Removed enemy 0 from column 5 
+[INFO|3:23:39]: Removed column 5 
+[INFO|3:23:39]: Destroyed ship in (3,1) 
+[INFO|3:23:40]: Removed enemy 1 from column 3 
+[INFO|3:23:40]: Destroyed ship in (2,2) 
+[INFO|3:23:40]: Removed enemy 2 from column 2 
+[INFO|3:23:40]: Destroyed ship in (1,1) 
+[INFO|3:23:40]: Destroyed ship in (0,3) 
+[INFO|3:23:40]: Removed enemy 3 from column 0 
+[INFO|3:23:40]: Removed enemy 1 from column 1 
+[INFO|3:23:41]: Destroyed ship in (0,2) 
+[INFO|3:23:41]: Formation now moving down 5 
+[INFO|3:23:41]: Removed enemy 2 from column 0 
+[INFO|3:23:41]: The special ship has escaped 
+[INFO|3:23:41]: Destroyed ship in (0,1) 
+[INFO|3:23:42]: Destroyed ship in (1,1) 
+[INFO|3:23:42]: Removed enemy 1 from column 0 
+[INFO|3:23:42]: Removed enemy 1 from column 1 
+[INFO|3:23:42]: Destroyed ship in (2,1) 
+[INFO|3:23:42]: Formation now moving left 1 
+[INFO|3:23:42]: Removed enemy 1 from column 2 
+[INFO|3:23:42]: Destroyed ship in (4,1) 
+[INFO|3:23:42]: Destroyed ship in (3,0) 
+[INFO|3:23:42]: Shooters list reduced to 5 members. 
+[INFO|3:23:42]: Destroyed ship in (4,2) 
+[INFO|3:23:43]: Removed enemy 0 from column 3 
+[INFO|3:23:43]: Removed enemy 1 from column 4 
+[INFO|3:23:43]: Removed enemy 2 from column 4 
+[INFO|3:23:43]: Removed column 3 
+[INFO|3:23:44]: Destroyed ship in (4,1) 
+[INFO|3:23:44]: Removed enemy 1 from column 4 
+[INFO|3:23:45]: Destroyed ship in (4,0) 
+[INFO|3:23:45]: Shooters list reduced to 4 members. 
+[INFO|3:23:45]: Removed enemy 0 from column 4 
+[INFO|3:23:45]: Removed column 4 
+[INFO|3:23:45]: Formation now moving down 3 
+[INFO|3:23:46]: Destroyed ship in (3,0) 
+[INFO|3:23:46]: Shooters list reduced to 3 members. 
+[INFO|3:23:46]: Formation now moving right 2 
+[INFO|3:23:46]: Removed enemy 0 from column 3 
+[INFO|3:23:46]: Removed column 3 
+[INFO|3:23:47]: Destroyed ship in (1,0) 
+[INFO|3:23:47]: Shooters list reduced to 2 members. 
+[INFO|3:23:47]: Removed enemy 0 from column 1 
+[INFO|3:23:47]: Removed column 1 
+[INFO|3:23:48]: Destroyed ship in (0,0) 
+[INFO|3:23:48]: Shooters list reduced to 1 members. 
+[INFO|3:23:48]: Removed enemy 0 from column 0 
+[INFO|3:23:48]: Removed column 0 
+[INFO|3:23:48]: Destroyed ship in (0,0) 
+[INFO|3:23:48]: Shooters list reduced to 0 members. 
+[INFO|3:23:50]: Screen cleared with a score of 5130 
+[INFO|3:23:50]: Closing game screen. 
+[INFO|3:23:50]: Starting 448x520 game screen at 60 fps. 
+[INFO|3:23:50]: Initializing 8x7 ship formation in (20,100) 
+[INFO|3:23:56]: Destroyed ship in (5,6) 
+[INFO|3:23:56]: Removed enemy 6 from column 5 
+[INFO|3:23:57]: Destroyed ship in (5,5) 
+[INFO|3:23:57]: Removed enemy 5 from column 5 
+[INFO|3:23:57]: Destroyed ship in (6,6) 
+[INFO|3:23:57]: Destroyed ship in (5,4) 
+[INFO|3:23:57]: Removed enemy 4 from column 5 
+[INFO|3:23:57]: Removed enemy 6 from column 6 
+[INFO|3:23:57]: Destroyed ship in (6,5) 
+[INFO|3:23:57]: Removed enemy 5 from column 6 
+[INFO|3:23:57]: Destroyed ship in (7,6) 
+[INFO|3:23:58]: Removed enemy 6 from column 7 
+[INFO|3:23:58]: Destroyed ship in (6,3) 
+[INFO|3:23:58]: Removed enemy 3 from column 6 
+[INFO|3:23:58]: Destroyed ship in (6,3) 
+[INFO|3:23:58]: Removed enemy 3 from column 6 
+[INFO|3:23:58]: Formation now moving down 5 
+[INFO|3:23:58]: Destroyed ship in (5,3) 
+[INFO|3:23:58]: Destroyed ship in (4,6) 
+[INFO|3:23:58]: Removed enemy 6 from column 4 
+[INFO|3:23:58]: Removed enemy 3 from column 5 
+[INFO|3:23:58]: Destroyed ship in (3,6) 
+[INFO|3:23:59]: Removed enemy 6 from column 3 
+[INFO|3:23:59]: Destroyed ship in (2,6) 
+[INFO|3:23:59]: Removed enemy 6 from column 2 
+[INFO|3:23:59]: Formation now moving left 1 
+[INFO|3:23:59]: Destroyed ship in (3,2) 
+[INFO|3:23:59]: Destroyed ship in (2,5) 
+[INFO|3:23:59]: Removed enemy 5 from column 2 
+[INFO|3:23:59]: Removed enemy 2 from column 3 
+[INFO|3:23:59]: Destroyed ship in (3,3) 
+[INFO|3:24:00]: Removed enemy 3 from column 3 
+[INFO|3:24:00]: Destroyed ship in (2,4) 
+[INFO|3:24:00]: Removed enemy 4 from column 2 
+[INFO|3:24:00]: Destroyed ship in (3,1) 
+[INFO|3:24:00]: Destroyed ship in (1,6) 
+[INFO|3:24:00]: Removed enemy 6 from column 1 
+[INFO|3:24:00]: Removed enemy 1 from column 3 
+[INFO|3:24:00]: Destroyed ship in (2,3) 
+[INFO|3:24:00]: Removed enemy 3 from column 2 
+[INFO|3:24:00]: Destroyed ship in (1,5) 
+[INFO|3:24:01]: Destroyed ship in (0,6) 
+[INFO|3:24:01]: Removed enemy 6 from column 0 
+[INFO|3:24:01]: Removed enemy 5 from column 1 
+[INFO|3:24:01]: Destroyed ship in (0,5) 
+[INFO|3:24:01]: Removed enemy 5 from column 0 
+[INFO|3:24:01]: Formation now moving down 3 
+[INFO|3:24:01]: Destroyed ship in (1,4) 
+[INFO|3:24:01]: Removed enemy 4 from column 1 
+[INFO|3:24:02]: Destroyed ship in (1,3) 
+[INFO|3:24:02]: Removed enemy 3 from column 1 
+[INFO|3:24:02]: Destroyed ship in (2,2) 
+[INFO|3:24:02]: Formation now moving right 2 
+[INFO|3:24:02]: Removed enemy 2 from column 2 
+[INFO|3:24:02]: Destroyed ship in (3,2) 
+[INFO|3:24:02]: Removed enemy 2 from column 3 
+[INFO|3:24:02]: Destroyed ship in (2,1) 
+[INFO|3:24:02]: Removed enemy 1 from column 2 
+[INFO|3:24:03]: Destroyed ship in (2,0) 
+[INFO|3:24:03]: Shooters list reduced to 7 members. 
+[INFO|3:24:03]: Removed enemy 0 from column 2 
+[INFO|3:24:03]: Destroyed ship in (3,1) 
+[INFO|3:24:03]: Removed column 2 
+[INFO|3:24:03]: Removed enemy 1 from column 2 
+[INFO|3:24:03]: Destroyed ship in (3,5) 
+[INFO|3:24:03]: Removed enemy 5 from column 3 
+[INFO|3:24:03]: Destroyed ship in (3,4) 
+[INFO|3:24:03]: Destroyed ship in (2,0) 
+[INFO|3:24:03]: Shooters list reduced to 6 members. 
+[INFO|3:24:04]: Removed enemy 0 from column 2 
+[INFO|3:24:04]: Removed enemy 4 from column 3 
+[INFO|3:24:04]: Removed column 2 
+[INFO|3:24:04]: Destroyed ship in (2,3) 
+[INFO|3:24:04]: Formation now moving down 5 
+[INFO|3:24:04]: Removed enemy 3 from column 2 
+[INFO|3:24:04]: Destroyed ship in (3,2) 
+[INFO|3:24:04]: Removed enemy 2 from column 3 
+[INFO|3:24:04]: Destroyed ship in (4,2) 
+[INFO|3:24:04]: Removed enemy 2 from column 4 
+[INFO|3:24:05]: Formation now moving left 1 
+[INFO|3:24:05]: Destroyed ship in (5,1) 
+[INFO|3:24:05]: Destroyed ship in (5,4) 
+[INFO|3:24:05]: Removed enemy 1 from column 5 
+[INFO|3:24:05]: Removed enemy 4 from column 5 
+[INFO|3:24:05]: Destroyed ship in (5,0) 
+[INFO|3:24:05]: Removed enemy 0 from column 5 
+[INFO|3:24:05]: Destroyed ship in (5,2) 
+[INFO|3:24:06]: Removed enemy 2 from column 5 
+[INFO|3:24:06]: Destroyed ship in (5,1) 
+[INFO|3:24:06]: Removed enemy 1 from column 5 
+[INFO|3:24:07]: Formation now moving down 3 
+[INFO|3:24:07]: Destroyed ship in (4,1) 
+[INFO|3:24:07]: Removed enemy 1 from column 4 
+[INFO|3:24:07]: Destroyed ship in (3,1) 
+[INFO|3:24:07]: Removed enemy 1 from column 3 
+[INFO|3:24:07]: Destroyed ship in (2,2) 
+[INFO|3:24:07]: Removed enemy 2 from column 2 
+[INFO|3:24:07]: Formation now moving right 2 
+[INFO|3:24:08]: Destroyed ship in (0,4) 
+[INFO|3:24:08]: Destroyed ship in (1,2) 
+[INFO|3:24:08]: Removed enemy 4 from column 0 
+[INFO|3:24:08]: Removed enemy 2 from column 1 
+[INFO|3:24:08]: A special ship appears 
+[INFO|3:24:09]: Destroyed ship in (0,3) 
+[INFO|3:24:09]: Removed enemy 3 from column 0 
+[INFO|3:24:09]: Destroyed ship in (0,2) 
+[INFO|3:24:09]: Removed enemy 2 from column 0 
+[INFO|3:24:09]: Formation now moving down 5 
+[INFO|3:24:10]: Destroyed ship in (0,1) 
+[INFO|3:24:10]: Removed enemy 1 from column 0 
+[INFO|3:24:10]: Destroyed ship in (1,1) 
+[INFO|3:24:10]: Formation now moving left 1 
+[INFO|3:24:10]: Removed enemy 1 from column 1 
+[INFO|3:24:11]: Destroyed ship in (1,0) 
+[INFO|3:24:11]: Shooters list reduced to 5 members. 
+[INFO|3:24:11]: Removed enemy 0 from column 1 
+[INFO|3:24:11]: Removed column 1 
+[INFO|3:24:12]: Formation now moving down 3 
+[INFO|3:24:12]: Destroyed ship in (0,0) 
+[INFO|3:24:12]: Shooters list reduced to 4 members. 
+[INFO|3:24:12]: Removed enemy 0 from column 0 
+[INFO|3:24:12]: Removed column 0 
+[INFO|3:24:13]: Formation now moving right 2 
+[INFO|3:24:15]: Destroyed ship in (0,1) 
+[INFO|3:24:15]: Removed enemy 1 from column 0 
+[INFO|3:24:15]: Formation now moving down 5 
+[INFO|3:24:16]: Formation now moving left 1 
+[INFO|3:24:16]: Destroyed ship in (0,0) 
+[INFO|3:24:16]: Shooters list reduced to 3 members. 
+[INFO|3:24:16]: Removed enemy 0 from column 0 
+[INFO|3:24:16]: Removed column 0 
+[INFO|3:24:17]: Destroyed ship in (0,0) 
+[INFO|3:24:17]: Shooters list reduced to 2 members. 
+[INFO|3:24:17]: Removed enemy 0 from column 0 
+[INFO|3:24:17]: Removed column 0 
+[INFO|3:24:17]: Destroyed ship in (0,0) 
+[INFO|3:24:17]: Shooters list reduced to 1 members. 
+[INFO|3:24:17]: Removed enemy 0 from column 0 
+[INFO|3:24:17]: Removed column 0 
+[INFO|3:24:17]: Destroyed ship in (0,0) 
+[INFO|3:24:17]: Shooters list reduced to 0 members. 
+[INFO|3:24:19]: Screen cleared with a score of 6550 
+[INFO|3:24:19]: Closing game screen. 
+[INFO|3:24:19]: Starting 448x520 score screen at 60 fps, with a score of 6550, 3 lives remaining, 477 bullets shot and 259 ships destroyed. 
+[INFO|3:24:19]: Loading default high scores. 
