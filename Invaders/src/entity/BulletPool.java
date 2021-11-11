@@ -61,3 +61,4 @@ public final class BulletPool {
 		pool.addAll(bullet);
 	}
 }
+

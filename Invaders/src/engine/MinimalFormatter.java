@@ -33,3 +33,4 @@ public class MinimalFormatter extends Formatter {
 	}
 
 }
+
