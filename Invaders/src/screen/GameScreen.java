@@ -1,5 +1,5 @@
 package screen;
-
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
@@ -70,6 +70,9 @@ public class GameScreen extends Screen {
 	private boolean levelFinished;
 	/** Checks if a bonus life is received. */
 	private boolean bonusLife;
+
+	public static boolean pause = false;
+
 
 	/**
 	 * Constructor, establishes the properties of the screen.
@@ -147,7 +150,15 @@ public class GameScreen extends Screen {
 	protected final void update() {
 		super.update();
 
-		if (this.inputDelay.checkFinished() && !this.levelFinished) {
+		if(inputManager.isKeyDown(KeyEvent.VK_R) && pause) {
+			pause = false;
+		}
+
+		if(inputManager.isKeyDown(KeyEvent.VK_P) && !pause) {
+			pause = true;
+		}
+
+		if (this.inputDelay.checkFinished() && !this.levelFinished && !pause) {
 
 			if (!this.ship.isDestroyed()) {
 				boolean moveRight = inputManager.isKeyDown(KeyEvent.VK_RIGHT)
@@ -196,7 +207,8 @@ public class GameScreen extends Screen {
 		}
 
 		manageCollisions();
-		cleanBullets();
+		if (!pause)
+			cleanBullets();
 		draw();
 
 		if ((this.enemyShipFormation.isEmpty() || this.lives == 0)
@@ -208,6 +220,7 @@ public class GameScreen extends Screen {
 		if (this.levelFinished && this.screenFinishedCooldown.checkFinished())
 			this.isRunning = false;
 
+		drawManager.drawCenteredBigString(this, "pause", this.getHeight() / 2);
 	}
 
 	/**
@@ -233,6 +246,9 @@ public class GameScreen extends Screen {
 		drawManager.drawScore(this, this.score);
 		drawManager.drawLives(this, this.lives);
 		drawManager.drawHorizontalLine(this, SEPARATION_LINE_HEIGHT - 1);
+		if (pause) {
+			drawManager.drawPause(this);
+		}
 
 		// Countdown to game start.
 		if (!this.inputDelay.checkFinished()) {
@@ -256,7 +272,7 @@ public class GameScreen extends Screen {
 	private void cleanBullets() {
 		Set<Bullet> recyclable = new HashSet<Bullet>();
 		for (Bullet bullet : this.bullets) {
-			bullet.update();
+				bullet.update();
 			if (bullet.getPositionY() < SEPARATION_LINE_HEIGHT
 					|| bullet.getPositionY() > this.height)
 				recyclable.add(bullet);

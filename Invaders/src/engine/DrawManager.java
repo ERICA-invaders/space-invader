@@ -7,6 +7,7 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.net.PortUnreachableException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -292,6 +293,12 @@ public final class DrawManager {
 
 		backBufferGraphics.setColor(Color.GREEN);
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
+	}
+
+	public void drawPause(final Screen screen) {
+		String pauseString = "Pause";
+		backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, pauseString, screen.getHeight() / 2);
 	}
 
 	/**
