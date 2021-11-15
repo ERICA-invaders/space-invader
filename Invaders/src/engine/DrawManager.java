@@ -1,10 +1,6 @@
 package engine;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -49,6 +45,8 @@ public final class DrawManager {
 
 	/** Sprite types mapped to their images. */
 	private static Map<SpriteType, boolean[][]> spriteMap;
+
+	private static Map<String, Image> pngSpriteMap;
 
 	/** Sprite types. */
 	public static enum SpriteType {
@@ -103,6 +101,10 @@ public final class DrawManager {
 			spriteMap.put(SpriteType.Explosion, new boolean[13][7]);
 
 			fileManager.loadSprite(spriteMap);
+
+			pngSpriteMap.put("rdbullet01.png", null);
+
+			fileManager.loadPngSprite(pngSpriteMap);
 			logger.info("Finished loading the sprites.");
 
 			// Font loading.
@@ -194,6 +196,11 @@ public final class DrawManager {
 				if (image[i][j])
 					backBufferGraphics.drawRect(positionX + i * 2, positionY
 							+ j * 2, 1, 1);
+	}
+
+	public void drawPngEntity(final String pngEntity, final int positionX, final int positionY,
+							  final int width, final int height) {
+		backBufferGraphics.drawImage(pngSpriteMap.get(pngEntity), positionX, positionY, width , height, null);
 	}
 
 	/**

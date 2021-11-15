@@ -1,7 +1,6 @@
 package engine;
 
-import java.awt.Font;
-import java.awt.FontFormatException;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,13 +14,13 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import engine.DrawManager.SpriteType;
+
+import javax.imageio.ImageIO;
 
 /**
  * Manages files used in the application.
@@ -95,6 +94,21 @@ public final class FileManager {
 		} finally {
 			if (inputStream != null)
 				inputStream.close();
+		}
+	}
+
+	public void loadPngSprite(final Map<String, Image> pngSpriteMap) throws IOException{
+		try {
+			for (Map.Entry<String, Image> pngSprite : pngSpriteMap.entrySet()) {
+				Image pngImage = ImageIO.read(
+						Objects.requireNonNull(
+								DrawManager.class.getClassLoader().getResourceAsStream(pngSprite.getKey())
+						)
+				);
+				pngSpriteMap.put(pngSprite.getKey(), pngImage);
+			}
+		} finally {
+
 		}
 	}
 
