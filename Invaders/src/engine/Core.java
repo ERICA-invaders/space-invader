@@ -77,7 +77,7 @@ public final class Core {
 	 * Test implementation.
 	 * 
 	 * @param args
-	 *            Program args, ignored. test
+	 *            Program args, ignored.
 	 */
 	public static void main(final String[] args) {
 		try {
