@@ -5,6 +5,7 @@ import javax.sound.sampled.Clip;
 import java.io.*;
 
 public final class SoundManager {
+    private static SoundManager instance;
     public enum Sound_ID{
         eLaser,
         eGetDamage,
@@ -23,6 +24,7 @@ public final class SoundManager {
             e.printStackTrace();
         }
     }
+
     public void playSound(Sound_ID id){
         int i=0;
         try {
@@ -50,4 +52,10 @@ public final class SoundManager {
         }
     }
 
+    public static SoundManager getInstance() {
+        if(instance==null){
+            return new SoundManager();
+        }
+        return instance;
+    }
 }
