@@ -54,28 +54,35 @@ public final class DrawManager {
 		Ship,
 		/** Destroyed player ship. */
 		ShipDestroyed,
-		/** Player bullet. */
-		Bullet("rdbullet01.png"),
-		/** Enemy bullet. */
-		EnemyBullet,
+		/** Player bullet. - first form. */
+		Bullet("./Resources/Skybluebullet/skblue1.png", "bullet"),
+		/** Player bullet. - second form. */
+		Bullet1("./Resources/Skybluebullet/skblue2.png", "bullet"),
+		/** Player bullet. - destroy form. */
+		Bullet2("./Resources/Skybluebullet/skblue4.png", "bullet"),
+		/** Enemy bullet. - first form. */
+		EnemyBullet("./Resources/RedBullet/rdbullet01.png", "bullet"),
+		/** Enemy bullet. - second form. */
+		EnemyBullet1("./Resources/RedBullet/rdbullet02.png", "bullet"),
 		/** First enemy ship - first form. */
-		EnemyShipA1,
+		EnemyShipA1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
 		/** First enemy ship - second form. */
-		EnemyShipA2,
+		EnemyShipA2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
 		/** Second enemy ship - first form. */
-		EnemyShipB1,
+		EnemyShipB1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
 		/** Second enemy ship - second form. */
-		EnemyShipB2,
+		EnemyShipB2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
 		/** Third enemy ship - first form. */
-		EnemyShipC1,
+		EnemyShipC1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
 		/** Third enemy ship - second form. */
-		EnemyShipC2,
+		EnemyShipC2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
 		/** Bonus ship. */
 		EnemyShipSpecial,
 		/** Destroyed enemy ship. */
 		Explosion;
 
 		private String fileName;
+		private String group;
 		SpriteType(){
 
 		}
@@ -84,8 +91,17 @@ public final class DrawManager {
 			this.fileName = fileName;
 		}
 
+		SpriteType(String fileName, String group){
+			this.fileName = fileName;
+			this.group = group;
+		}
+
 		public String getFileName() {
 			return fileName;
+		}
+
+		public String getGroup() {
+			return group;
 		}
 	};
 
@@ -118,6 +134,16 @@ public final class DrawManager {
 			pngSpriteMap = new LinkedHashMap<SpriteType, Image>();
 
 			pngSpriteMap.put(SpriteType.Bullet, null);
+			pngSpriteMap.put(SpriteType.Bullet1, null);
+			pngSpriteMap.put(SpriteType.Bullet2, null);
+			pngSpriteMap.put(SpriteType.EnemyBullet, null);
+			pngSpriteMap.put(SpriteType.EnemyBullet1, null);
+			pngSpriteMap.put(SpriteType.EnemyShipA1, null);
+			pngSpriteMap.put(SpriteType.EnemyShipA2, null);
+			pngSpriteMap.put(SpriteType.EnemyShipB1, null);
+			pngSpriteMap.put(SpriteType.EnemyShipB2, null);
+			pngSpriteMap.put(SpriteType.EnemyShipC1, null);
+			pngSpriteMap.put(SpriteType.EnemyShipC2, null);
 
 			fileManager.loadPngSprite(pngSpriteMap);
 			logger.info("Finished loading the sprites.");
@@ -203,10 +229,17 @@ public final class DrawManager {
 	 */
 	public void drawEntity(final Entity entity, final int positionX,
 						   final int positionY) {
-		if(entity.getSpriteType()== SpriteType.Bullet){
-			drawPngEntity(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
-			return;
+
+		for (SpriteType spriteType : pngSpriteMap.keySet()) {
+			if(entity.getSpriteType() == spriteType){
+				if(spriteType.group == "bullet")
+					drawBullet(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
+				else if(spriteType.group == "enemy")
+					drawEnemy(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
+				return;
+			}
 		}
+
 		boolean[][] image = spriteMap.get(entity.getSpriteType());
 
 		backBufferGraphics.setColor(entity.getColor());
@@ -217,10 +250,16 @@ public final class DrawManager {
 							+ j * 2, 1, 1);
 	}
 
-	public void drawPngEntity(final Entity entity, final int positionX, final int positionY,
+	public void drawBullet(final Entity entity, final int positionX, final int positionY,
 							  final int width, final int height) {
 		backBufferGraphics.drawImage(pngSpriteMap.get(entity.getSpriteType()),
-				positionX - 50, positionY - 50, 100 , 100, null);
+				positionX - width, positionY - height, width * 3 , height * 3, null);
+	}
+
+	public void drawEnemy(final Entity entity, final int positionX, final int positionY,
+						   final int width, final int height) {
+		backBufferGraphics.drawImage(pngSpriteMap.get(entity.getSpriteType()),
+				positionX, positionY - height, width, height * 3, null);
 	}
 
 	/**

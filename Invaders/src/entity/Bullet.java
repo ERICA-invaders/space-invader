@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.Color;
 
+import engine.Cooldown;
 import engine.DrawManager.SpriteType;
 
 /**
@@ -17,6 +18,11 @@ public class Bullet extends Entity {
 	 * positive is down.
 	 */
 	private int speed;
+
+	/** Cooldown between sprite changes. */
+	private Cooldown animationCoolDown;
+	/** Values of the bullet, in points, when destroyed. */
+	private boolean isDestroyed;
 
 	/**
 	 * Constructor, establishes the bullet's properties.
@@ -52,6 +58,10 @@ public class Bullet extends Entity {
 	 */
 	public final void update() {
 		this.positionY += this.speed;
+		if (speed < 0)
+			this.spriteType = SpriteType.Bullet1;
+		else
+			this.spriteType = SpriteType.EnemyBullet1;
 	}
 
 	/**
@@ -72,4 +82,6 @@ public class Bullet extends Entity {
 	public final int getSpeed() {
 		return this.speed;
 	}
+
+	public final void setSpriteType(SpriteType spriteType) {this.spriteType = spriteType;}
 }
