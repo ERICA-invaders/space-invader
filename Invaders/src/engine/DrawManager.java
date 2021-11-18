@@ -332,7 +332,7 @@ public final class DrawManager {
 		backBufferGraphics.drawString(Integer.toString(lives), 20, 25);
 		Ship dummyShip = new Ship(0, 0);
 		for (int i = 0; i < lives; i++)
-			drawEntity(dummyShip, 40 + 35 * i, 10);
+			drawEntity(dummyShip, 65 + 60 * i, 15);
 	}
 
 	/**
