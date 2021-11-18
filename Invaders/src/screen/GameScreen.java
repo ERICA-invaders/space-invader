@@ -4,10 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
 
-import engine.Cooldown;
-import engine.Core;
-import engine.GameSettings;
-import engine.GameState;
+import engine.*;
 import entity.Bullet;
 import entity.BulletPool;
 import entity.EnemyShip;
@@ -78,7 +75,7 @@ public class GameScreen extends Screen {
 	 *            Current game state.
 	 * @param gameSettings
 	 *            Current game settings.
-	 * @param bonnusLife
+	 * @param bonusLife
 	 *            Checks if a bonus life is awarded this level.
 	 * @param width
 	 *            Screen width.
