@@ -51,7 +51,7 @@ public final class DrawManager {
 	/** Sprite types. */
 	public static enum SpriteType {
 		/** Player ship. */
-		Ship,
+		Ship("./Resources/MyShip/ship5.png", "ship"),
 		/** Destroyed player ship. */
 		ShipDestroyed,
 		/** Player bullet. - first form. */
@@ -133,6 +133,7 @@ public final class DrawManager {
 
 			pngSpriteMap = new LinkedHashMap<SpriteType, Image>();
 
+			pngSpriteMap.put(SpriteType.Ship, null);
 			pngSpriteMap.put(SpriteType.Bullet, null);
 			pngSpriteMap.put(SpriteType.Bullet1, null);
 			pngSpriteMap.put(SpriteType.Bullet2, null);
@@ -236,6 +237,8 @@ public final class DrawManager {
 					drawBullet(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
 				else if(spriteType.group == "enemy")
 					drawEnemy(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
+				else if(spriteType.group == "ship")
+					drawShip(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
 				return;
 			}
 		}
@@ -253,13 +256,19 @@ public final class DrawManager {
 	public void drawBullet(final Entity entity, final int positionX, final int positionY,
 							  final int width, final int height) {
 		backBufferGraphics.drawImage(pngSpriteMap.get(entity.getSpriteType()),
-				positionX - width, positionY - height, width * 3 , height * 3, null);
+				positionX - width * 3, positionY - height, width * 3 , height * 3, null);
 	}
 
 	public void drawEnemy(final Entity entity, final int positionX, final int positionY,
 						   final int width, final int height) {
 		backBufferGraphics.drawImage(pngSpriteMap.get(entity.getSpriteType()),
 				positionX, positionY - height, width, height * 3, null);
+	}
+
+	public void drawShip(final Entity entity, final int positionX, final int positionY,
+						  final int width, final int height) {
+		backBufferGraphics.drawImage(pngSpriteMap.get(entity.getSpriteType()),
+				positionX - width, positionY - height, width * 2, height * 2, null);
 	}
 
 	/**
