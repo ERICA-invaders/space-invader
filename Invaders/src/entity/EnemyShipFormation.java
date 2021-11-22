@@ -426,4 +426,6 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	public final boolean isEmpty() {
 		return this.shipCount <= 0;
 	}
+
+	public final Cooldown getShootingCooldown() {return this.shootingCooldown;}
 }

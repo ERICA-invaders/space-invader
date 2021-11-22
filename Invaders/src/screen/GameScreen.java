@@ -151,6 +151,8 @@ public class GameScreen extends Screen {
 		super.update();
 
 		if(inputManager.isKeyDown(KeyEvent.VK_R) && pause) {
+			this.enemyShipFormation.getShootingCooldown().reset();
+			this.ship.getShootingCooldown().reset();ad
 			pause = false;
 		}
 
@@ -272,7 +274,7 @@ public class GameScreen extends Screen {
 	private void cleanBullets() {
 		Set<Bullet> recyclable = new HashSet<Bullet>();
 		for (Bullet bullet : this.bullets) {
-				bullet.update();
+			bullet.update();
 			if (bullet.getPositionY() < SEPARATION_LINE_HEIGHT
 					|| bullet.getPositionY() > this.height)
 				recyclable.add(bullet);

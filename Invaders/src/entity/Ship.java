@@ -110,4 +110,6 @@ public class Ship extends Entity {
 	public final int getSpeed() {
 		return SPEED;
 	}
+
+	public final Cooldown getShootingCooldown() {return this.shootingCooldown;}
 }
