@@ -71,7 +71,9 @@ public class GameScreen extends Screen {
 	/** Checks if a bonus life is received. */
 	private boolean bonusLife;
 
-	public static boolean pause = false;
+	private static boolean pause = false;
+	private long save;
+
 
 
 	/**
@@ -151,13 +153,16 @@ public class GameScreen extends Screen {
 		super.update();
 
 		if(inputManager.isKeyDown(KeyEvent.VK_R) && pause) {
-			this.enemyShipFormation.getShootingCooldown().reset();
-			this.ship.getShootingCooldown().reset();ad
+			//this.enemyShipFormation.getShootingCooldown().reset();
+			//this.ship.getShootingCooldown().reset();
+			this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
+			this.ship.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
 			pause = false;
 		}
 
 		if(inputManager.isKeyDown(KeyEvent.VK_P) && !pause) {
 			pause = true;
+			save = System.currentTimeMillis();
 		}
 
 		if (this.inputDelay.checkFinished() && !this.levelFinished && !pause) {

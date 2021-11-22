@@ -112,4 +112,6 @@ public class Ship extends Entity {
 	}
 
 	public final Cooldown getShootingCooldown() {return this.shootingCooldown;}
+
+	public final void setShootingCooldown(Cooldown setCool) {this.shootingCooldown = setCool;}
 }
