@@ -295,10 +295,26 @@ public final class DrawManager {
 		drawCenteredBigString(screen, titleString, screen.getHeight() / 3);
 	}
 
-	public void drawPause(final Screen screen) {
-		String pauseString = "Pause";
-		backBufferGraphics.setColor(Color.WHITE);
-		drawCenteredRegularString(screen, pauseString, screen.getHeight() / 2);
+	public void drawPauseMenu(final Screen screen, final int option) {
+		String playString = "resume";
+		String highScoresString = "stage1";
+		String exitString = "mainmenu";
+
+		if (option == 2)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, playString, screen.getHeight() / 2);
+		if (option == 3)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, highScoresString, screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 2);
+		if (option == 0)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, exitString, screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 4);
 	}
 
 	/**
