@@ -1,5 +1,4 @@
 package screen;
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
@@ -23,52 +22,98 @@ import entity.Ship;
  */
 public class GameScreen extends Screen {
 
-	/** Milliseconds until the screen accepts user input. */
+	/**
+	 * Milliseconds until the screen accepts user input.
+	 */
 	private static final int INPUT_DELAY = 6000;
-	/** Bonus score for each life remaining at the end of the level. */
+	/**
+	 * Bonus score for each life remaining at the end of the level.
+	 */
 	private static final int LIFE_SCORE = 100;
-	/** Minimum time between bonus ship's appearances. */
+	/**
+	 * Minimum time between bonus ship's appearances.
+	 */
 	private static final int BONUS_SHIP_INTERVAL = 20000;
-	/** Maximum variance in the time between bonus ship's appearances. */
+	/**
+	 * Maximum variance in the time between bonus ship's appearances.
+	 */
 	private static final int BONUS_SHIP_VARIANCE = 10000;
-	/** Time until bonus ship explosion disappears. */
+	/**
+	 * Time until bonus ship explosion disappears.
+	 */
 	private static final int BONUS_SHIP_EXPLOSION = 500;
-	/** Time from finishing the level to screen change. */
+	/**
+	 * Time from finishing the level to screen change.
+	 */
 	private static final int SCREEN_CHANGE_INTERVAL = 1500;
-	/** Height of the interface separation line. */
+	/**
+	 * Height of the interface separation line.
+	 */
 	private static final int SEPARATION_LINE_HEIGHT = 40;
 
-	/** Current game difficulty settings. */
+	/**
+	 * Current game difficulty settings.
+	 */
 	private GameSettings gameSettings;
-	/** Current difficulty level number. */
+	/**
+	 * Current difficulty level number.
+	 */
 	private int level;
-	/** Formation of enemy ships. */
+	/**
+	 * Formation of enemy ships.
+	 */
 	private EnemyShipFormation enemyShipFormation;
-	/** Player's ship. */
+	/**
+	 * Player's ship.
+	 */
 	private Ship ship;
-	/** Bonus enemy ship that appears sometimes. */
+	/**
+	 * Bonus enemy ship that appears sometimes.
+	 */
 	private EnemyShip enemyShipSpecial;
-	/** Minimum time between bonus ship appearances. */
+	/**
+	 * Minimum time between bonus ship appearances.
+	 */
 	private Cooldown enemyShipSpecialCooldown;
-	/** Time until bonus ship explosion disappears. */
+	/**
+	 * Time until bonus ship explosion disappears.
+	 */
 	private Cooldown enemyShipSpecialExplosionCooldown;
-	/** Time from finishing the level to screen change. */
+	/**
+	 * Time from finishing the level to screen change.
+	 */
 	private Cooldown screenFinishedCooldown;
-	/** Set of all bullets fired by on screen ships. */
+	/**
+	 * Set of all bullets fired by on screen ships.
+	 */
 	private Set<Bullet> bullets;
-	/** Current score. */
+	/**
+	 * Current score.
+	 */
 	private int score;
-	/** Player lives left. */
+	/**
+	 * Player lives left.
+	 */
 	private int lives;
-	/** Total bullets shot by the player. */
+	/**
+	 * Total bullets shot by the player.
+	 */
 	private int bulletsShot;
-	/** Total ships destroyed by the player. */
+	/**
+	 * Total ships destroyed by the player.
+	 */
 	private int shipsDestroyed;
-	/** Moment the game starts. */
+	/**
+	 * Moment the game starts.
+	 */
 	private long gameStartTime;
-	/** Checks if the level is finished. */
+	/**
+	 * Checks if the level is finished.
+	 */
 	private boolean levelFinished;
-	/** Checks if a bonus life is received. */
+	/**
+	 * Checks if a bonus life is received.
+	 */
 	private boolean bonusLife;
 
 	private static boolean pause = false;
@@ -76,28 +121,22 @@ public class GameScreen extends Screen {
 	private Cooldown selectionCooldown;
 	private long save = 0;
 	private static int option = 2;
-
+	private static int state = 0;
 
 
 	/**
 	 * Constructor, establishes the properties of the screen.
-	 * 
-	 * @param gameState
-	 *            Current game state.
-	 * @param gameSettings
-	 *            Current game settings.
-	 * @param bonnusLife
-	 *            Checks if a bonus life is awarded this level.
-	 * @param width
-	 *            Screen width.
-	 * @param height
-	 *            Screen height.
-	 * @param fps
-	 *            Frames per second, frame rate at which the game is run.
+	 *
+	 * @param gameState    Current game state.
+	 * @param gameSettings Current game settings.
+	 * @param bonnusLife   Checks if a bonus life is awarded this level.
+	 * @param width        Screen width.
+	 * @param height       Screen height.
+	 * @param fps          Frames per second, frame rate at which the game is run.
 	 */
 	public GameScreen(final GameState gameState,
-			final GameSettings gameSettings, final boolean bonusLife,
-			final int width, final int height, final int fps) {
+					  final GameSettings gameSettings, final boolean bonusLife,
+					  final int width, final int height, final int fps) {
 		super(width, height, fps);
 
 		this.gameSettings = gameSettings;
@@ -140,7 +179,7 @@ public class GameScreen extends Screen {
 
 	/**
 	 * Starts the action.
-	 * 
+	 *
 	 * @return Next screen code.
 	 */
 	public final int run() {
@@ -177,7 +216,6 @@ public class GameScreen extends Screen {
 		super.update();
 
 		if (this.inputDelay.checkFinished() && !this.levelFinished && !pause) {
-
 			if (!this.ship.isDestroyed()) {
 				boolean moveRight = inputManager.isKeyDown(KeyEvent.VK_RIGHT)
 						|| inputManager.isKeyDown(KeyEvent.VK_D);
@@ -224,7 +262,7 @@ public class GameScreen extends Screen {
 			this.enemyShipFormation.shoot(this.bullets);
 
 
-			if(inputManager.isKeyDown(KeyEvent.VK_P)) {
+			if (inputManager.isKeyDown(KeyEvent.VK_P)) {
 				pause = true;
 				save = System.currentTimeMillis();
 			}
@@ -258,15 +296,33 @@ public class GameScreen extends Screen {
 					this.selectionCooldown.reset();
 				}
 				if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
-					if (option == 0) this.returnCode = 1;
-					//this.isRunning = false;
+					if (option == 0) {
+						// 메인메뉴
+						state = 2;
+						pause = false;
+						level = Core.getNUM_LEVELS();
+						//lives = 0;
+						this.option = 2;
+						this.isRunning = false;
+					} else if (option == 2) {
+						//계속하기
+						this.enemyShipFormation.getShootingCooldown().reset();
+						this.ship.getShootingCooldown().reset();
+						//this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
+						//this.ship.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
+						pause = false;
+					} else if (option == 3) {
+						//처음부터
+						level = 0;
+						lives = Core.getMAX_LIVES();
+						bulletsShot = 0;
+						shipsDestroyed = 0;
+						pause = false;
+						this.isRunning = false;
+						this.option = 2;
+						score = -LIFE_SCORE * (Core.getMAX_LIVES() - 1);
+					}
 				}
-			}
-
-			if (inputManager.isKeyDown(KeyEvent.VK_R)) {
-				this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
-				this.ship.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
-				pause = false;
 			}
 		}
 	}
@@ -301,7 +357,7 @@ public class GameScreen extends Screen {
 		if (!this.inputDelay.checkFinished()) {
 			int countdown = (int) ((INPUT_DELAY
 					- (System.currentTimeMillis()
-							- this.gameStartTime)) / 1000);
+					- this.gameStartTime)) / 1000);
 			drawManager.drawCountDown(this, this.level, countdown,
 					this.bonusLife);
 			drawManager.drawHorizontalLine(this, this.height / 2 - this.height
@@ -369,11 +425,9 @@ public class GameScreen extends Screen {
 
 	/**
 	 * Checks if two entities are colliding.
-	 * 
-	 * @param a
-	 *            First entity, the bullet.
-	 * @param b
-	 *            Second entity, the ship.
+	 *
+	 * @param a First entity, the bullet.
+	 * @param b Second entity, the ship.
 	 * @return Result of the collision test.
 	 */
 	private boolean checkCollision(final Entity a, final Entity b) {
@@ -394,11 +448,13 @@ public class GameScreen extends Screen {
 
 	/**
 	 * Returns a GameState object representing the status of the game.
-	 * 
+	 *
 	 * @return Current game state.
 	 */
 	public final GameState getGameState() {
 		return new GameState(this.level, this.score, this.lives,
 				this.bulletsShot, this.shipsDestroyed);
 	}
+
+	public final int getState() {return this.state;}
 }

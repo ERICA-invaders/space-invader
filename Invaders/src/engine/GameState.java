@@ -50,12 +50,14 @@ public class GameState {
 		return level;
 	}
 
+
 	/**
 	 * @return the score
 	 */
 	public final int getScore() {
 		return score;
 	}
+
 
 	/**
 	 * @return the livesRemaining
@@ -70,6 +72,7 @@ public class GameState {
 	public final int getBulletsShot() {
 		return bulletsShot;
 	}
+
 
 	/**
 	 * @return the shipsDestroyed

@@ -114,11 +114,9 @@ public final class Core {
 		gameSettings.add(SETTINGS_LEVEL_7);
 		
 		GameState gameState;
-
 		int returnCode = 1;
 		do {
 			gameState = new GameState(1, 0, MAX_LIVES, 0, 0);
-
 			switch (returnCode) {
 			case 1:
 				// Main menu.
@@ -154,6 +152,11 @@ public final class Core {
 
 				} while (gameState.getLivesRemaining() > 0
 						&& gameState.getLevel() <= NUM_LEVELS);
+
+				if (((GameScreen) currentScreen).getState() == 2) {
+					returnCode = 1;
+					break;
+				}
 
 				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 						+ " score screen at " + FPS + " fps, with a score of "
@@ -251,4 +254,8 @@ public final class Core {
 			final int variance) {
 		return new Cooldown(milliseconds, variance);
 	}
+
+	public static int getNUM_LEVELS() { return NUM_LEVELS; }
+
+	public static int getMAX_LIVES() {return MAX_LIVES;}
 }
