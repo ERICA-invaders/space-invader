@@ -304,17 +304,17 @@ public final class DrawManager {
 			backBufferGraphics.setColor(Color.GREEN);
 		else
 			backBufferGraphics.setColor(Color.WHITE);
-		drawCenteredRegularString(screen, playString, screen.getHeight() / 2);
+		drawCenteredRegularString(screen, playString, screen.getHeight() / 2 - fontRegularMetrics.getHeight() * 2);
 		if (option == 3)
 			backBufferGraphics.setColor(Color.GREEN);
 		else
 			backBufferGraphics.setColor(Color.WHITE);
-		drawCenteredRegularString(screen, highScoresString, screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 2);
+		drawCenteredRegularString(screen, highScoresString, screen.getHeight() / 2 );
 		if (option == 0)
 			backBufferGraphics.setColor(Color.GREEN);
 		else
 			backBufferGraphics.setColor(Color.WHITE);
-		drawCenteredRegularString(screen, exitString, screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 4);
+		drawCenteredRegularString(screen, exitString, screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 2);
 	}
 
 	/**

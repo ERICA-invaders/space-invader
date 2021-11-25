@@ -121,7 +121,6 @@ public class GameScreen extends Screen {
 	private Cooldown selectionCooldown;
 	private long save = 0;
 	private static int option = 2;
-	private static int state = 0;
 
 
 	/**
@@ -298,12 +297,10 @@ public class GameScreen extends Screen {
 				if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
 					if (option == 0) {
 						// 메인메뉴
-						state = 2;
-						pause = false;
 						level = Core.getNUM_LEVELS();
-						//lives = 0;
-						this.option = 2;
+						pause = false;
 						this.isRunning = false;
+						this.option = 2;
 					} else if (option == 2) {
 						//계속하기
 						this.enemyShipFormation.getShootingCooldown().reset();
@@ -456,5 +453,5 @@ public class GameScreen extends Screen {
 				this.bulletsShot, this.shipsDestroyed);
 	}
 
-	public final int getState() {return this.state;}
+	public final int getOption() {return this.option;}
 }

@@ -153,7 +153,7 @@ public final class Core {
 				} while (gameState.getLivesRemaining() > 0
 						&& gameState.getLevel() <= NUM_LEVELS);
 
-				if (((GameScreen) currentScreen).getState() == 2) {
+				if (((GameScreen) currentScreen).getOption() == 2) {
 					returnCode = 1;
 					break;
 				}
