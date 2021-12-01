@@ -8,9 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import entity.EnemyShip;
 import screen.Screen;
 import entity.Entity;
 import entity.Ship;
+
 
 /**
  * Manages screen drawing.
@@ -261,7 +263,25 @@ public final class DrawManager {
 
 	public void drawEnemy(final Entity entity, final int positionX, final int positionY,
 						   final int width, final int height) {
-		backBufferGraphics.drawImage(pngSpriteMap.get(entity.getSpriteType()),
+		BufferedImage borg = (BufferedImage) pngSpriteMap.get(entity.getSpriteType());
+
+		BufferedImage bi = new BufferedImage(borg.getWidth(), borg.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = bi.createGraphics();
+		g2d.drawImage(borg, 0, 0, null);
+		g2d.dispose();
+
+		byte alpha = ((EnemyShip) entity).getAlpha();
+		alpha %= 0xff;
+		for (int cx=0;cx<bi.getWidth();cx++) {
+			for (int cy=0;cy<bi.getHeight();cy++) {
+				int color = bi.getRGB(cx, cy);
+				int mc = (alpha << 24) | 0x00ffffff;
+				int newcolor = color & mc;
+				bi.setRGB(cx, cy, newcolor);
+			}
+		}
+
+		backBufferGraphics.drawImage(bi,
 				positionX, positionY - height, width, height * 3, null);
 	}
 

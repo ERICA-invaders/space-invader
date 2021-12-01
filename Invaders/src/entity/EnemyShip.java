@@ -31,6 +31,7 @@ public class EnemyShip extends Entity {
 	private int pointValue;
 
 	private int life;
+	private int maxLife;
 
 	/**
 	 * Constructor, establishes the ship's properties.
@@ -50,7 +51,7 @@ public class EnemyShip extends Entity {
 		this.animationCooldown = Core.getCooldown(500);
 		this.isDestroyed = false;
 
-		this.life = 3;
+		this.life = this.maxLife = 3;
 
 		switch (this.spriteType) {
 		case EnemyShipA1:
@@ -82,7 +83,7 @@ public class EnemyShip extends Entity {
 		this.isDestroyed = false;
 		this.pointValue = BONUS_TYPE_POINTS;
 
-		this.life = 3;
+		this.life = this.maxLife = 1;
 	}
 
 	/**
@@ -160,5 +161,9 @@ public class EnemyShip extends Entity {
 	 */
 	public final boolean isDestroyed() {
 		return this.isDestroyed;
+	}
+
+	public final byte getAlpha() {
+		return (byte) (255f * this.life / this.maxLife);
 	}
 }
