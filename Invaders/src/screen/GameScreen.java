@@ -313,7 +313,7 @@ public class GameScreen extends Screen {
 	 */
 	private boolean checkCollision(final Entity a, final Entity b) {
 		// Calculate center point of the entities in both axis.
-		int centerAX = a.getPositionX() + a.getWidth() / 2;
+		int centerAX = a.getPositionX() + a.getWidth() / 3 - 10;
 		int centerAY = a.getPositionY() + a.getHeight() / 2;
 		int centerBX = b.getPositionX() + b.getWidth() / 2;
 		int centerBY = b.getPositionY() + b.getHeight() / 2;
