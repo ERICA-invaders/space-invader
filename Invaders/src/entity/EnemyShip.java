@@ -30,6 +30,9 @@ public class EnemyShip extends Entity {
 	/** Values of the ship, in points, when destroyed. */
 	private int pointValue;
 
+	private int life;
+	private int maxLife;
+
 	/**
 	 * Constructor, establishes the ship's properties.
 	 * 
@@ -47,6 +50,8 @@ public class EnemyShip extends Entity {
 		this.spriteType = spriteType;
 		this.animationCooldown = Core.getCooldown(500);
 		this.isDestroyed = false;
+
+		this.life = this.maxLife = 3;
 
 		switch (this.spriteType) {
 		case EnemyShipA1:
@@ -77,6 +82,8 @@ public class EnemyShip extends Entity {
 		this.spriteType = SpriteType.EnemyShipSpecial;
 		this.isDestroyed = false;
 		this.pointValue = BONUS_TYPE_POINTS;
+
+		this.life = this.maxLife = 1;
 	}
 
 	/**
@@ -136,9 +143,15 @@ public class EnemyShip extends Entity {
 	/**
 	 * Destroys the ship, causing an explosion.
 	 */
-	public final void destroy() {
-		this.isDestroyed = true;
-		this.spriteType = SpriteType.Explosion;
+	public final boolean destroy() {
+		life--;
+		if(life > 0) {
+			return false;
+		} else {
+			this.isDestroyed = true;
+			this.spriteType = SpriteType.Explosion;
+			return true;
+		}
 	}
 
 	/**
@@ -148,5 +161,9 @@ public class EnemyShip extends Entity {
 	 */
 	public final boolean isDestroyed() {
 		return this.isDestroyed;
+	}
+
+	public final byte getAlpha() {
+		return (byte) (255f * this.life / this.maxLife);
 	}
 }
