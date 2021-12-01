@@ -2,6 +2,7 @@ package engine;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,6 +13,8 @@ import entity.EnemyShip;
 import screen.Screen;
 import entity.Entity;
 import entity.Ship;
+
+import javax.imageio.ImageIO;
 
 
 /**
@@ -80,6 +83,10 @@ public final class DrawManager {
 		EnemyShipC2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
 		/** Bonus ship. */
 		EnemyShipSpecial,
+		/** Boss enemy ship - first form. */
+		BossShip1("./Resources/boss/spaceship3-2.png", "enemy"),
+		/** Boss enemy ship - second form. */
+		BossShip2("./Resources/boss/spaceship3-1.png", "enemy"),
 		/** Destroyed enemy ship. */
 		Explosion;
 
@@ -147,6 +154,8 @@ public final class DrawManager {
 			pngSpriteMap.put(SpriteType.EnemyShipB2, null);
 			pngSpriteMap.put(SpriteType.EnemyShipC1, null);
 			pngSpriteMap.put(SpriteType.EnemyShipC2, null);
+			pngSpriteMap.put(SpriteType.BossShip1, null);
+			pngSpriteMap.put(SpriteType.BossShip2, null);
 
 			fileManager.loadPngSprite(pngSpriteMap);
 			logger.info("Finished loading the sprites.");
@@ -201,7 +210,6 @@ public final class DrawManager {
 		backBufferGraphics.setColor(Color.BLACK);
 		backBufferGraphics
 				.fillRect(0, 0, screen.getWidth(), screen.getHeight());
-
 		fontRegularMetrics = backBufferGraphics.getFontMetrics(fontRegular);
 		fontBigMetrics = backBufferGraphics.getFontMetrics(fontBig);
 
