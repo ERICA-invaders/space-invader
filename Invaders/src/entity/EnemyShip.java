@@ -1,6 +1,8 @@
 package entity;
 
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import engine.Cooldown;
 import engine.Core;
@@ -136,7 +138,45 @@ public class EnemyShip extends Entity {
 	/**
 	 * Destroys the ship, causing an explosion.
 	 */
+	Timer timer = new Timer();
+
+	TimerTask speedUp = new TimerTask() {
+		@Override
+		public void run() {
+			Item.speedUp();
+		}
+	};
+
+	TimerTask speedDown = new TimerTask() {
+		@Override
+		public void run() {
+			Item.speedDown();
+		}
+	};
+
 	public final void destroy() {
+		int random = (int) (Math.random() * 999);
+		if (random < 150) {
+			if (random < 25) {
+				Item.speedUp();
+				timer.schedule(speedDown, 10000);
+				System.out.println("speedUp");
+				System.out.println(Ship.getSpeed());
+			} else if (random < 50) {
+				Item.speedDown();
+				timer.schedule(speedUp, 10000);
+				System.out.println("speedDown");
+				System.out.println(Ship.getSpeed());
+			} else if (random < 75) {
+
+			} else if (random < 100) {
+
+			} else if (random < 125) {
+
+			} else {
+
+			}
+		}
 		this.isDestroyed = true;
 		this.spriteType = SpriteType.Explosion;
 	}

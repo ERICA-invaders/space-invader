@@ -68,4 +68,8 @@ public class Cooldown {
 					+ (int) (Math.random()
 							* (this.milliseconds + this.variance));
 	}
+
+	public final int getduration() {return duration;}
+
+	public final void setduration(int setduration) {duration = setduration;}
 }
