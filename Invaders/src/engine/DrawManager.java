@@ -2,6 +2,7 @@ package engine;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -12,6 +13,8 @@ import entity.EnemyShip;
 import screen.Screen;
 import entity.Entity;
 import entity.Ship;
+
+import javax.imageio.ImageIO;
 
 
 /**
@@ -207,7 +210,6 @@ public final class DrawManager {
 		backBufferGraphics.setColor(Color.BLACK);
 		backBufferGraphics
 				.fillRect(0, 0, screen.getWidth(), screen.getHeight());
-
 		fontRegularMetrics = backBufferGraphics.getFontMetrics(fontRegular);
 		fontBigMetrics = backBufferGraphics.getFontMetrics(fontBig);
 
