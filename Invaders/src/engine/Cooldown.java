@@ -14,6 +14,11 @@ public class Cooldown {
 	private int variance;
 	/** Duration of this run, varies between runs if variance > 0. */
 	private int duration;
+
+	public long getTime() {
+		return time;
+	}
+
 	/** Beginning time. */
 	private long time;
 
