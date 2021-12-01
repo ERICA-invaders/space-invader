@@ -15,10 +15,16 @@
 
     <build>
         <defaultGoal>install</defaultGoal>
-        <sourceDirectory>src/main/java</sourceDirectory>
+        <sourceDirectory>Invaders/src/</sourceDirectory>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>Invaders/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>Invaders/res</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>
@@ -26,7 +32,6 @@
         </resources>
         <plugins>
             <plugin>
-                <!-- Build an executable JAR -->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>

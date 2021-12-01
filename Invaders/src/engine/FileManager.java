@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import engine.DrawManager.SpriteType;
-import entity.EnemyShip;
 
 import javax.imageio.ImageIO;
 
@@ -71,8 +70,8 @@ public final class FileManager {
 		InputStream inputStream = null;
 
 		try {
-			inputStream = DrawManager.class.getClassLoader()
-					.getResourceAsStream("graphics");
+			inputStream = getClass()
+					.getResourceAsStream("/graphics");
 			char c;
 
 			// Sprite loading.
@@ -102,7 +101,6 @@ public final class FileManager {
 	public void loadPngSprite(final Map<SpriteType, Image> pngSpriteMap) throws IOException{
 		try {
 			for (Map.Entry<SpriteType, Image> pngSprite : pngSpriteMap.entrySet()) {
-				logger.info("a");
 				BufferedImage pngImage = ImageIO.read(
 						Objects.requireNonNull(
 								getClass().getResourceAsStream(pngSprite.getKey().getFileName())
@@ -203,7 +201,7 @@ public final class FileManager {
 
 			String scoresPath = new File(jarPath).getParent();
 			scoresPath += File.separator;
-			scoresPath += "scores";
+			scoresPath += "Invaders/res/scores";
 
 			File scoresFile = new File(scoresPath);
 			inputStream = new FileInputStream(scoresFile);
@@ -256,7 +254,7 @@ public final class FileManager {
 
 			String scoresPath = new File(jarPath).getParent();
 			scoresPath += File.separator;
-			scoresPath += "scores";
+			scoresPath += "Invaders/res/scores";
 
 			File scoresFile = new File(scoresPath);
 

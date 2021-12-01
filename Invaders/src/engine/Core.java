@@ -118,7 +118,7 @@ public final class Core {
 		
 		GameState gameState;
 
-		return int returnCode = 1;
+		int returnCode = 1;
 		do {
 			gameState = new GameState(1, 0, MAX_LIVES, 0, 0);
 
