@@ -62,7 +62,7 @@ public final class DrawManager {
 		/** Player bullet. - first form. */
 		Bullet("./Resources/Skybluebullet/skblue1.png", "bullet"),
 		/** Player bullet. - second form. */
-		Bullet1("./Resources/Skybluebullet/skblue2.png", "bullet"),
+		Bullet1("./Resources/Skybluebullet/skblue32.png", "bullet"),
 		/** Player bullet. - destroy form. */
 		Bullet2("./Resources/Skybluebullet/skblue4.png", "bullet"),
 		/** Enemy bullet. - first form. */
