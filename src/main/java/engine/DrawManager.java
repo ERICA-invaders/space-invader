@@ -56,37 +56,37 @@ public final class DrawManager {
 	/** Sprite types. */
 	public static enum SpriteType {
 		/** Player ship. */
-		Ship("./Resources/MyShip/ship5.png", "ship"),
+		Ship("/MyShip/ship5.png", "ship"),
 		/** Destroyed player ship. */
 		ShipDestroyed,
 		/** Player bullet. - first form. */
-		Bullet("./Resources/Skybluebullet/skblue1.png", "bullet"),
+		Bullet("/Skybluebullet/skblue1.png", "bullet"),
 		/** Player bullet. - second form. */
-		Bullet1("./Resources/Skybluebullet/skblue3.png", "bullet"),
+		Bullet1("/Skybluebullet/skblue3.png", "bullet"),
 		/** Player bullet. - destroy form. */
-		Bullet2("./Resources/Skybluebullet/skblue4.png", "bullet"),
+		Bullet2("/Skybluebullet/skblue4.png", "bullet"),
 		/** Enemy bullet. - first form. */
-		EnemyBullet("./Resources/RedBullet/rdbullet01.png", "bullet"),
+		EnemyBullet("/RedBullet/rdbullet01.png", "bullet"),
 		/** Enemy bullet. - second form. */
-		EnemyBullet1("./Resources/RedBullet/rdbullet02.png", "bullet"),
+		EnemyBullet1("/RedBullet/rdbullet02.png", "bullet"),
 		/** First enemy ship - first form. */
-		EnemyShipA1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
+		EnemyShipA1("/enemyShip/spaceship5-1.png", "enemy"),
 		/** First enemy ship - second form. */
-		EnemyShipA2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
+		EnemyShipA2("/enemyShip/spaceship5-2.png", "enemy"),
 		/** Second enemy ship - first form. */
-		EnemyShipB1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
+		EnemyShipB1("/enemyShip/spaceship5-1.png", "enemy"),
 		/** Second enemy ship - second form. */
-		EnemyShipB2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
+		EnemyShipB2("/enemyShip/spaceship5-2.png", "enemy"),
 		/** Third enemy ship - first form. */
-		EnemyShipC1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
+		EnemyShipC1("/enemyShip/spaceship5-1.png", "enemy"),
 		/** Third enemy ship - second form. */
-		EnemyShipC2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
+		EnemyShipC2("/enemyShip/spaceship5-2.png", "enemy"),
 		/** Bonus ship. */
 		EnemyShipSpecial,
 		/** Boss enemy ship - first form. */
-		BossShip1("./Resources/boss/spaceship3-2.png", "enemy"),
+		BossShip1("/boss/spaceship3-2.png", "enemy"),
 		/** Boss enemy ship - second form. */
-		BossShip2("./Resources/boss/spaceship3-1.png", "enemy"),
+		BossShip2("/boss/spaceship3-1.png", "enemy"),
 		/** Destroyed enemy ship. */
 		Explosion;
 
