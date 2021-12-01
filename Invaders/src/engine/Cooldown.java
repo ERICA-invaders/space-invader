@@ -69,7 +69,7 @@ public class Cooldown {
 					* (this.milliseconds + this.variance));
 	}
 
-	public final long getTime() {return this.time;}
+	public long getTime() {return this.time;}
 
-	public final void setTime(long settime) {this.time = settime;}
+	public void setTime(long settime) {this.time = settime;}
 }

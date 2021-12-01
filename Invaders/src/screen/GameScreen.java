@@ -303,10 +303,8 @@ public class GameScreen extends Screen {
 						this.option = 2;
 					} else if (option == 2) {
 						//계속하기
-						this.enemyShipFormation.getShootingCooldown().reset();
-						this.ship.getShootingCooldown().reset();
-						//this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
-						//this.ship.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
+						this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
+						this.ship.getShootingCooldown().setTime(this.ship.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
 						pause = false;
 					} else if (option == 3) {
 						//처음부터

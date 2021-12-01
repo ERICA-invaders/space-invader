@@ -297,7 +297,7 @@ public final class DrawManager {
 
 	public void drawPauseMenu(final Screen screen, final int option) {
 		String playString = "resume";
-		String highScoresString = "stage1";
+		String highScoresString = "new game";
 		String exitString = "mainmenu";
 
 		if (option == 2)

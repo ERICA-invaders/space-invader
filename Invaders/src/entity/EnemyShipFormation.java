@@ -428,6 +428,4 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 	}
 
 	public final Cooldown getShootingCooldown() {return this.shootingCooldown;}
-
-	public final void setShootingCooldown(Cooldown setCool) {this.shootingCooldown = setCool;}
 }
