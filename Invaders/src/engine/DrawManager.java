@@ -398,6 +398,41 @@ public final class DrawManager {
 	}
 
 	/**
+	 * Draws pause menu.
+	 *
+	 * @param screen
+	 * 				Screen to draw on.
+	 * @param option
+	 * 				Option selected.
+	 */
+
+	public void drawPauseMenu(final Screen screen, final int option) {
+		String resume = "resume";
+		String newgame = "new game";
+		String mainmenu = "mainmenu";
+
+		// resume
+		if (option == 2)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, resume, screen.getHeight() / 2 - fontRegularMetrics.getHeight() * 2);
+		// new game
+		if (option == 3)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, newgame, screen.getHeight() / 2 );
+		// mainmenu
+		if (option == 0)
+			backBufferGraphics.setColor(Color.GREEN);
+		else
+			backBufferGraphics.setColor(Color.WHITE);
+		drawCenteredRegularString(screen, mainmenu, screen.getHeight() / 2 + fontRegularMetrics.getHeight() * 2);
+	}
+
+
+	/**
 	 * Draws main menu.
 	 *
 	 * @param screen
