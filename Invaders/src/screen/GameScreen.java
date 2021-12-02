@@ -54,13 +54,13 @@ public class GameScreen extends Screen {
 	/** Set of all bullets fired by on screen ships. */
 	private Set<Bullet> bullets;
 	/** Current score. */
-	private int score;
+	private static int score;
 	/** Player lives left. */
-	private int lives;
+	private static int lives;
 	/** Total bullets shot by the player. */
 	private int bulletsShot;
 	/** Total ships destroyed by the player. */
-	private int shipsDestroyed;
+	private static int shipsDestroyed;
 	/** Moment the game starts. */
 	private long gameStartTime;
 	/** Checks if the level is finished. */
@@ -335,4 +335,24 @@ public class GameScreen extends Screen {
 		return new GameState(this.level, this.score, this.lives,
 				this.bulletsShot, this.shipsDestroyed);
 	}
+
+//	public static void bombDestroy(EnemyShip bombEnemyShip) {
+//		if (!bombEnemyShip.isDestroyed()) {
+//			score += bombEnemyShip.getPointValue();
+//			shipsDestroyed++;
+//			enemyShipFormation.destroy(bombEnemyShip);
+//		}
+//	}
+
+	public static final int getlives() {return lives;}
+
+	public static final void setlives(int setlives) {lives = setlives;}
+
+	public static final int getScore() {return score;}
+
+	public static final void setScore(int setscore) {score = setscore;}
+
+	public static final int getShipsDestroyed() {return shipsDestroyed;}
+
+	public static final void setShipsDestroyed(int setshipdestroyed) {shipsDestroyed = setshipdestroyed;}
 }

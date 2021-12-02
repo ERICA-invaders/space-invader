@@ -250,4 +250,6 @@ public final class Core {
 			final int variance) {
 		return new Cooldown(milliseconds, variance);
 	}
+
+	public static final int getMAX_LIVES() {return MAX_LIVES;}
 }

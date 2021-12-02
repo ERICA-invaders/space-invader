@@ -140,17 +140,24 @@ public class EnemyShip extends Entity {
 	 */
 	Timer timer = new Timer();
 
-	TimerTask speedUp = new TimerTask() {
+	TimerTask speedUpClear = new TimerTask() {
 		@Override
 		public void run() {
-			Item.speedUp();
+			Item.speedUpClear();
 		}
 	};
 
-	TimerTask speedDown = new TimerTask() {
+	TimerTask speedDownClear = new TimerTask() {
 		@Override
 		public void run() {
-			Item.speedDown();
+			Item.speedDownClear();
+		}
+	};
+
+	TimerTask stunClear = new TimerTask() {
+		@Override
+		public void run() {
+			Item.stunClear();
 		}
 	};
 
@@ -159,24 +166,30 @@ public class EnemyShip extends Entity {
 		if (random < 150) {
 			if (random < 25) {
 				Item.speedUp();
-				timer.schedule(speedDown, 10000);
+				timer.schedule(speedUpClear, 10000);
 				System.out.println("speedUp");
 				System.out.println(Ship.getSpeed());
 			} else if (random < 50) {
 				Item.speedDown();
-				timer.schedule(speedUp, 10000);
+				timer.schedule(speedDownClear, 10000);
 				System.out.println("speedDown");
 				System.out.println(Ship.getSpeed());
 			} else if (random < 75) {
-
+				Item.stun();
+				timer.schedule(stunClear, 5000);
+				System.out.println("stun");
+				System.out.println(Ship.getSpeed());
 			} else if (random < 100) {
-
+				Item.bonusLife();
 			} else if (random < 125) {
-
+				Item.bomb();
+				System.out.println("bomb");
 			} else {
 
 			}
 		}
+		Item.bomb();
+		System.out.println("bomb");
 		this.isDestroyed = true;
 		this.spriteType = SpriteType.Explosion;
 	}
