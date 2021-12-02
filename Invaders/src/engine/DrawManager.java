@@ -2,15 +2,20 @@ package engine;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import entity.EnemyShip;
 import screen.Screen;
 import entity.Entity;
 import entity.Ship;
+
+import javax.imageio.ImageIO;
+
 
 /**
  * Manages screen drawing.
@@ -51,33 +56,37 @@ public final class DrawManager {
 	/** Sprite types. */
 	public static enum SpriteType {
 		/** Player ship. */
-		Ship("./Resources/MyShip/ship5.png", "ship"),
+		Ship("/MyShip/ship5.png", "ship"),
 		/** Destroyed player ship. */
 		ShipDestroyed,
 		/** Player bullet. - first form. */
-		Bullet("./Resources/Skybluebullet/skblue1.png", "bullet"),
+		Bullet("/Skybluebullet/skblue1.png", "bullet"),
 		/** Player bullet. - second form. */
-		Bullet1("./Resources/Skybluebullet/skblue2.png", "bullet"),
+		Bullet1("/Skybluebullet/skblue2.png", "bullet"),
 		/** Player bullet. - destroy form. */
-		Bullet2("./Resources/Skybluebullet/skblue4.png", "bullet"),
+		Bullet2("/Skybluebullet/skblue4.png", "bullet"),
 		/** Enemy bullet. - first form. */
-		EnemyBullet("./Resources/RedBullet/rdbullet01.png", "bullet"),
+		EnemyBullet("/RedBullet/rdbullet01.png", "bullet"),
 		/** Enemy bullet. - second form. */
-		EnemyBullet1("./Resources/RedBullet/rdbullet02.png", "bullet"),
+		EnemyBullet1("/RedBullet/rdbullet02.png", "bullet"),
 		/** First enemy ship - first form. */
-		EnemyShipA1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
+		EnemyShipA1("/enemyShip/spaceship5-1.png", "enemy"),
 		/** First enemy ship - second form. */
-		EnemyShipA2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
+		EnemyShipA2("/enemyShip/spaceship5-2.png", "enemy"),
 		/** Second enemy ship - first form. */
-		EnemyShipB1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
+		EnemyShipB1("/enemyShip/spaceship5-1.png", "enemy"),
 		/** Second enemy ship - second form. */
-		EnemyShipB2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
+		EnemyShipB2("/enemyShip/spaceship5-2.png", "enemy"),
 		/** Third enemy ship - first form. */
-		EnemyShipC1("./Resources/enemyShip/spaceship5-1.png", "enemy"),
+		EnemyShipC1("/enemyShip/spaceship5-1.png", "enemy"),
 		/** Third enemy ship - second form. */
-		EnemyShipC2("./Resources/enemyShip/spaceship5-2.png", "enemy"),
+		EnemyShipC2("/enemyShip/spaceship5-2.png", "enemy"),
 		/** Bonus ship. */
 		EnemyShipSpecial,
+		/** Boss enemy ship - first form. */
+		BossShip1("/boss/spaceship3-2.png", "enemy"),
+		/** Boss enemy ship - second form. */
+		BossShip2("/boss/spaceship3-1.png", "enemy"),
 		/** Destroyed enemy ship. */
 		Explosion;
 
@@ -145,6 +154,8 @@ public final class DrawManager {
 			pngSpriteMap.put(SpriteType.EnemyShipB2, null);
 			pngSpriteMap.put(SpriteType.EnemyShipC1, null);
 			pngSpriteMap.put(SpriteType.EnemyShipC2, null);
+			pngSpriteMap.put(SpriteType.BossShip1, null);
+			pngSpriteMap.put(SpriteType.BossShip2, null);
 
 			fileManager.loadPngSprite(pngSpriteMap);
 			logger.info("Finished loading the sprites.");
@@ -199,7 +210,6 @@ public final class DrawManager {
 		backBufferGraphics.setColor(Color.BLACK);
 		backBufferGraphics
 				.fillRect(0, 0, screen.getWidth(), screen.getHeight());
-
 		fontRegularMetrics = backBufferGraphics.getFontMetrics(fontRegular);
 		fontBigMetrics = backBufferGraphics.getFontMetrics(fontBig);
 
@@ -261,7 +271,25 @@ public final class DrawManager {
 
 	public void drawEnemy(final Entity entity, final int positionX, final int positionY,
 						   final int width, final int height) {
-		backBufferGraphics.drawImage(pngSpriteMap.get(entity.getSpriteType()),
+		BufferedImage borg = (BufferedImage) pngSpriteMap.get(entity.getSpriteType());
+
+		BufferedImage bi = new BufferedImage(borg.getWidth(), borg.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g2d = bi.createGraphics();
+		g2d.drawImage(borg, 0, 0, null);
+		g2d.dispose();
+
+		byte alpha = ((EnemyShip) entity).getAlpha();
+		alpha %= 0xff;
+		for (int cx=0;cx<bi.getWidth();cx++) {
+			for (int cy=0;cy<bi.getHeight();cy++) {
+				int color = bi.getRGB(cx, cy);
+				int mc = (alpha << 24) | 0x00ffffff;
+				int newcolor = color & mc;
+				bi.setRGB(cx, cy, newcolor);
+			}
+		}
+
+		backBufferGraphics.drawImage(bi,
 				positionX, positionY - height, width, height * 3, null);
 	}
 

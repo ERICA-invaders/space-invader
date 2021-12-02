@@ -1,6 +1,7 @@
 package engine;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import engine.DrawManager.SpriteType;
+import entity.EnemyShip;
 
 import javax.imageio.ImageIO;
 
@@ -100,11 +102,12 @@ public final class FileManager {
 	public void loadPngSprite(final Map<SpriteType, Image> pngSpriteMap) throws IOException{
 		try {
 			for (Map.Entry<SpriteType, Image> pngSprite : pngSpriteMap.entrySet()) {
-				Image pngImage = ImageIO.read(
+				BufferedImage pngImage = ImageIO.read(
 						Objects.requireNonNull(
-								DrawManager.class.getClassLoader().getResourceAsStream(pngSprite.getKey().getFileName())
+								getClass().getResourceAsStream(pngSprite.getKey().getFileName())
 						)
 				);
+
 				pngSpriteMap.put(pngSprite.getKey(), pngImage);
 			}
 		} finally {
@@ -130,8 +133,8 @@ public final class FileManager {
 
 		try {
 			// Font loading.
-			inputStream = FileManager.class.getClassLoader()
-					.getResourceAsStream("font.ttf");
+			inputStream = getClass()
+					.getResourceAsStream("/font.ttf");
 			font = Font.createFont(Font.TRUETYPE_FONT, inputStream).deriveFont(
 					size);
 		} finally {
@@ -156,8 +159,8 @@ public final class FileManager {
 		BufferedReader reader = null;
 
 		try {
-			inputStream = FileManager.class.getClassLoader()
-					.getResourceAsStream("scores");
+			inputStream = getClass()
+					.getResourceAsStream("/scores");
 			reader = new BufferedReader(new InputStreamReader(inputStream));
 
 			Score highScore = null;
