@@ -177,7 +177,7 @@ public class EnemyShip extends Entity {
 	TimerTask stunClear = new TimerTask() {
 		@Override
 		public void run() {
-			Item.stunClear();
+			Item.snareClear();
 		}
 	};
 
@@ -202,7 +202,7 @@ public class EnemyShip extends Entity {
 					System.out.println("speedDown");
 					System.out.println(Ship.getSpeed());
 				} else if (random < 75) {
-					Item.stun();
+					Item.snare();
 					timer.schedule(stunClear, 5000);
 					System.out.println("stun");
 					System.out.println(Ship.getSpeed());

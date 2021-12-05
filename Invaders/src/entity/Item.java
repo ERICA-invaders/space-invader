@@ -29,11 +29,11 @@ public class Item {
         Ship.setSpeed((float) (Ship.getSpeed() * 2.0));
     }
 
-    public static void stun() {
+    public static void snare() {
         Ship.setSpeed(0);
     }
 
-    public static void stunClear() {
+    public static void snareClear() {
         Ship.setSpeed(savespeed);
     }
 
