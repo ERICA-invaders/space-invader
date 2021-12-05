@@ -15,10 +15,6 @@ public class Cooldown {
 	/** Duration of this run, varies between runs if variance > 0. */
 	private int duration;
 
-	public long getTime() {
-		return time;
-	}
-
 	/** Beginning time. */
 	private long time;
 
@@ -72,5 +68,13 @@ public class Cooldown {
 			this.duration = (this.milliseconds - this.variance)
 					+ (int) (Math.random()
 							* (this.milliseconds + this.variance));
+	}
+
+	public long getTime() {
+		return time;
+	}
+
+	public void setTime(long settime) {
+		time = settime;
 	}
 }

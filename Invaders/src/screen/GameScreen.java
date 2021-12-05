@@ -138,6 +138,12 @@ public class GameScreen extends Screen {
      */
     private boolean bonusLife;
 
+    private static boolean pause = false;
+    private static final int SELECTION_TIME = 200;
+    private Cooldown selectionCooldown;
+    private long save = 0;
+    private static int option = 2;
+
     /**
      * Constructor, establishes the properties of the screen.
      *
@@ -162,6 +168,9 @@ public class GameScreen extends Screen {
             this.lives++;
         this.bulletsShot = gameState.getBulletsShot();
         this.shipsDestroyed = gameState.getShipsDestroyed();
+
+        this.selectionCooldown = Core.getCooldown(SELECTION_TIME);
+        this.selectionCooldown.reset();
     }
 
     /**
@@ -212,13 +221,31 @@ public class GameScreen extends Screen {
         return this.returnCode;
     }
 
+    private void nextMenuItem() {
+        if (this.option == 3)
+            this.option = 0;
+        else if (this.option == 0)
+            this.option = 2;
+        else
+            this.option++;
+    }
+
+    private void previousMenuItem() {
+        if (this.option == 0)
+            this.option = 3;
+        else if (this.option == 2)
+            this.option = 0;
+        else
+            this.option--;
+    }
+
     /**
      * Updates the elements on screen and checks for events.
      */
     protected final void update() {
         super.update();
 
-        if (this.inputDelay.checkFinished() && !this.levelFinished) {
+        if (this.inputDelay.checkFinished() && !this.levelFinished && !pause) {
 
             if (!this.ship.isDestroyed()) {
                 boolean moveRight = inputManager.isKeyDown(KeyEvent.VK_RIGHT)
@@ -289,10 +316,15 @@ public class GameScreen extends Screen {
                     bossShipPatternCooldown.reset();
                 }
             }
+            if (inputManager.isKeyDown(KeyEvent.VK_P)) {
+                pause = true;
+                save = System.currentTimeMillis();
+            }
         }
 
         manageCollisions();
-        cleanBullets();
+        if (!pause)
+            cleanBullets();
         draw();
 
         if (this.level != 8) {
@@ -311,6 +343,46 @@ public class GameScreen extends Screen {
 
         if (this.levelFinished && this.screenFinishedCooldown.checkFinished())
             this.isRunning = false;
+
+        if (pause) {
+            if (this.selectionCooldown.checkFinished()
+                    && this.inputDelay.checkFinished()) {
+                if (inputManager.isKeyDown(KeyEvent.VK_UP)
+                        || inputManager.isKeyDown(KeyEvent.VK_W)) {
+                    previousMenuItem();
+                    this.selectionCooldown.reset();
+                }
+                if (inputManager.isKeyDown(KeyEvent.VK_DOWN)
+                        || inputManager.isKeyDown(KeyEvent.VK_S)) {
+                    nextMenuItem();
+                    this.selectionCooldown.reset();
+                }
+                if (inputManager.isKeyDown(KeyEvent.VK_SPACE)) {
+                    if (option == 0) {
+                        // main menu
+                        level = Core.getNUM_LEVELS();
+                        pause = false;
+                        this.isRunning = false;
+                        this.option = 2;
+                    } else if (option == 2) {
+                        // resume
+                        this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
+                        this.ship.getShootingCooldown().setTime(this.ship.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
+                        pause = false;
+                    } else if (option == 3) {
+                        // new game
+                        level = 0;
+                        lives = Core.getMAX_LIVES();
+                        bulletsShot = 0;
+                        shipsDestroyed = 0;
+                        pause = false;
+                        this.isRunning = false;
+                        this.option = 2;
+                        score = -LIFE_SCORE * (Core.getMAX_LIVES() - 1);
+                    }
+                }
+            }
+        }
 
     }
 
@@ -342,6 +414,8 @@ public class GameScreen extends Screen {
         drawManager.drawScore(this, this.score);
         drawManager.drawLives(this, this.lives);
         drawManager.drawHorizontalLine(this, SEPARATION_LINE_HEIGHT - 1);
+
+        if (pause) drawManager.drawPauseMenu(this, option);
 
         // Countdown to game start.
         if (!this.inputDelay.checkFinished()) {
@@ -454,5 +528,9 @@ public class GameScreen extends Screen {
     public final GameState getGameState() {
         return new GameState(this.level, this.score, this.lives,
                 this.bulletsShot, this.shipsDestroyed);
+    }
+
+    public final int getOption() {
+        return this.option;
     }
 }
