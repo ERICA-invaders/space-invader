@@ -1,6 +1,8 @@
 package entity;
 
 import java.awt.Color;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import engine.Cooldown;
 import engine.Core;
@@ -156,6 +158,29 @@ public class EnemyShip extends Entity {
 		}
 	}
 
+	Timer timer = new Timer();
+
+	TimerTask speedUpClear = new TimerTask() {
+		@Override
+		public void run() {
+			Item.speedUpClear();
+		}
+	};
+
+	TimerTask speedDownClear = new TimerTask() {
+		@Override
+		public void run() {
+			Item.speedDownClear();
+		}
+	};
+
+	TimerTask stunClear = new TimerTask() {
+		@Override
+		public void run() {
+			Item.stunClear();
+		}
+	};
+
 	/**
 	 * Destroys the ship, causing an explosion.
 	 */
@@ -164,6 +189,34 @@ public class EnemyShip extends Entity {
 		if(life > 0) {
 			return false;
 		} else {
+			int random = (int) (Math.random() * 999);
+			if (random < 150) {
+				if (random < 25) {
+					Item.speedUp();
+					timer.schedule(speedUpClear, 10000);
+					System.out.println("speedUp");
+					System.out.println(Ship.getSpeed());
+				} else if (random < 50) {
+					Item.speedDown();
+					timer.schedule(speedDownClear, 10000);
+					System.out.println("speedDown");
+					System.out.println(Ship.getSpeed());
+				} else if (random < 75) {
+					Item.stun();
+					timer.schedule(stunClear, 5000);
+					System.out.println("stun");
+					System.out.println(Ship.getSpeed());
+				} else if (random < 100) {
+					Item.bonusLife();
+				} else if (random < 125) {
+					Item.bomb();
+					System.out.println("bomb");
+				} else {
+
+				}
+			}
+			Item.bomb();
+			System.out.println("bomb");
 			this.isDestroyed = true;
 			this.spriteType = SpriteType.Explosion;
 			return true;

@@ -3,6 +3,7 @@ package entity;
 import java.util.*;
 import java.util.logging.Logger;
 
+import screen.GameScreen;
 import screen.Screen;
 import engine.Cooldown;
 import engine.Core;
@@ -159,6 +160,10 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
      * Number of not destroyed ships.
      */
     private int shipCount;
+
+    private static boolean isbomb = false;
+    private int col;
+    private int row;
 
     /**
      * Directions the formation can move.
@@ -389,6 +394,8 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
                         this.logger.info("Removed enemy "
                                 + column.indexOf(ship) + " from column "
                                 + this.enemyShips.indexOf(column));
+                        col = column.indexOf(ship);
+                        row = this.enemyShips.indexOf(column);
                     }
                 }
                 column.removeAll(destroyed);
@@ -550,5 +557,28 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
 
     public final Cooldown getShootingCooldown() {
         return this.shootingCooldown;
+    }
+
+    public static void setisbomb(boolean setisbomb) {isbomb = setisbomb;}
+
+    public void bomb() {
+        int a = col, b = row;
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (a + i >= 0 && b + j >= 0 && a + i < this.enemyShips.size() && b + j < this.enemyShips.get(a + i).size()) {
+                    if (!enemyShips.get(a + i).get(b + j).isDestroyed()) {
+                        GameScreen.setScore(GameScreen.getScore() + enemyShips.get(a + i).get(b + j).getPointValue());
+                        GameScreen.setShipsDestroyed(GameScreen.getShipsDestroyed() + 1);
+                        destroy(enemyShips.get(a + i).get(b + j));
+                    }
+                    //GameScreen.bombDestroy(this.enemyShips.get(a + i).get(b + j));
+                    enemyShips.get(a + i).get(b + j).destroy();
+                    System.out.println(a + i);
+                    System.out.println(b + j);
+                    System.out.println("----------");
+                }
+            }
+        }
+        isbomb = false;
     }
 }

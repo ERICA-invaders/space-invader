@@ -112,11 +112,11 @@ public class GameScreen extends Screen {
     /**
      * Current score.
      */
-    private int score;
+    private static int score;
     /**
      * Player lives left.
      */
-    private int lives;
+    private static int lives;
     /**
      * Total bullets shot by the player.
      */
@@ -124,7 +124,7 @@ public class GameScreen extends Screen {
     /**
      * Total ships destroyed by the player.
      */
-    private int shipsDestroyed;
+    private static int shipsDestroyed;
     /**
      * Moment the game starts.
      */
@@ -533,4 +533,16 @@ public class GameScreen extends Screen {
     public final int getOption() {
         return this.option;
     }
+
+    public static final int getlives() {return lives;}
+
+    public static final void setlives(int setlives) {lives = setlives;}
+
+    public static final int getScore() {return score;}
+
+    public static final void setScore(int setscore) {score = setscore;}
+
+    public static final int getShipsDestroyed() {return shipsDestroyed;}
+
+    public static final void setShipsDestroyed(int setshipdestroyed) {shipsDestroyed = setshipdestroyed;}
 }
