@@ -1,6 +1,7 @@
 package entity;
 
 import java.awt.Color;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -189,38 +190,14 @@ public class EnemyShip extends Entity {
 		if(life > 0) {
 			return false;
 		} else {
-			int random = (int) (Math.random() * 999);
-			if (random < 150) {
-				if (random < 25) {
-					Item.speedUp();
-					timer.schedule(speedUpClear, 10000);
-					System.out.println("speedUp");
-					System.out.println(Ship.getSpeed());
-				} else if (random < 50) {
-					Item.speedDown();
-					timer.schedule(speedDownClear, 10000);
-					System.out.println("speedDown");
-					System.out.println(Ship.getSpeed());
-				} else if (random < 75) {
-					Item.snare();
-					timer.schedule(stunClear, 5000);
-					System.out.println("stun");
-					System.out.println(Ship.getSpeed());
-				} else if (random < 100) {
-					Item.bonusLife();
-				} else if (random < 125) {
-					Item.bomb();
-					System.out.println("bomb");
-				} else {
-
-				}
-			}
-			Item.bomb();
-			System.out.println("bomb");
 			this.isDestroyed = true;
 			this.spriteType = SpriteType.Explosion;
 			return true;
 		}
+	}
+
+	public final void drop(final Set<Item> items, final int positionX, final int positionY, final int speed) {
+		items.add(ItemPool.getItem(positionX, positionY, speed));
 	}
 
 	/**

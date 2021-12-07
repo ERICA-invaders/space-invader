@@ -87,6 +87,10 @@ public final class DrawManager {
 		BossShip1("/boss/spaceship3-2.png", "enemy"),
 		/** Boss enemy ship - second form. */
 		BossShip2("/boss/spaceship3-1.png", "enemy"),
+		/** Positive item. */
+		PositiveItems("/Items/PositiveItems.png", "Items"),
+		/** Negative item. */
+		NegativeItems("/Items/NegativeItems.png", "Items"),
 		/** Destroyed enemy ship. */
 		Explosion;
 

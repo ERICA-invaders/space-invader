@@ -6,12 +6,7 @@ import java.util.Set;
 
 import engine.*;
 import engine.DrawManager.SpriteType;
-import entity.Bullet;
-import entity.BulletPool;
-import entity.EnemyShip;
-import entity.EnemyShipFormation;
-import entity.Entity;
-import entity.Ship;
+import entity.*;
 
 /**
  * Implements the game screen, where the action happens.
@@ -143,6 +138,7 @@ public class GameScreen extends Screen {
     private Cooldown selectionCooldown;
     private long save = 0;
     private static int option = 2;
+    private Set<Item> items;
 
     /**
      * Constructor, establishes the properties of the screen.
@@ -199,6 +195,7 @@ public class GameScreen extends Screen {
         this.bossShipPatternCooldown = Core.getCooldown(10000);
         this.screenFinishedCooldown = Core.getCooldown(SCREEN_CHANGE_INTERVAL);
         this.bullets = new HashSet<Bullet>();
+        this.items = new HashSet<Item>();
 
         // Special input delay / countdown.
         this.gameStartTime = System.currentTimeMillis();
@@ -323,8 +320,10 @@ public class GameScreen extends Screen {
         }
 
         manageCollisions();
-        if (!pause)
+        if (!pause) {
             cleanBullets();
+            cleanItems();
+        }
         draw();
 
         if (this.level != 8) {
@@ -410,6 +409,10 @@ public class GameScreen extends Screen {
             drawManager.drawEntity(bullet, bullet.getPositionX(),
                     bullet.getPositionY());
 
+        for (Item item : this.items)
+            drawManager.drawEntity(item, item.getPositionX(),
+                    item.getPositionY());
+
         // Interface.
         drawManager.drawScore(this, this.score);
         drawManager.drawLives(this, this.lives);
@@ -448,11 +451,24 @@ public class GameScreen extends Screen {
         BulletPool.recycle(recyclable);
     }
 
+    private void cleanItems() {
+        Set<Item> recyclable = new HashSet<>();
+        for (Item item : this.items) {
+            item.update();
+            if (item.getPositionY() < SEPARATION_LINE_HEIGHT
+                    || item.getPositionY() > this.height)
+                recyclable.add(item);
+        }
+        this.items.removeAll(recyclable);
+        ItemPool.recycle(recyclable);
+    }
+
     /**
      * Manages collisions between bullets and ships.
      */
     private void manageCollisions() {
         Set<Bullet> recyclable = new HashSet<Bullet>();
+        Set<Item> recyclableItem = new HashSet<Item>();
         for (Bullet bullet : this.bullets)
             if (bullet.getSpeed() > 0) {
                 if (checkCollision(bullet, this.ship) && !this.levelFinished) {
@@ -471,6 +487,7 @@ public class GameScreen extends Screen {
                         if (this.enemyShipFormation.destroy(enemyShip)) {
                             this.shipsDestroyed++;
                             this.score += enemyShip.getPointValue();
+                            enemyShip.drop(items, enemyShip.getPositionX(), enemyShip.getPositionY(), 2);
                         }
                         recyclable.add(bullet);
                     }

@@ -571,7 +571,6 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
                         GameScreen.setShipsDestroyed(GameScreen.getShipsDestroyed() + 1);
                         destroy(enemyShips.get(a + i).get(b + j));
                     }
-                    //GameScreen.bombDestroy(this.enemyShips.get(a + i).get(b + j));
                     enemyShips.get(a + i).get(b + j).destroy();
                     System.out.println(a + i);
                     System.out.println(b + j);
