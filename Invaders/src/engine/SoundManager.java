@@ -1,50 +1,38 @@
 package engine;
-import javazoom.jl.player.Player;
+import java.io.*;
+import java.net.URL;
+import javax.sound.sampled.*;
+import javax.swing.*;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
+// To play sound using Clip, the process need to be alive.
+// Hence, we use a Swing application.
+public class SoundManager {
 
-public class SoundManager extends Thread{
-    private Player player;
-    private boolean isLoop;
-    private File file;
-    private FileInputStream fis;
-    private BufferedInputStream bis;
+    public SoundManager() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setTitle("Test Sound Clip");
+        this.setSize(300, 200);
+        this.setVisible(true);
 
-    public SoundManager(String name,boolean _isLoop){
         try {
-            this.isLoop=_isLoop;
-            file = new File(Core.class.getResource("../music/"+name).toURI());
-            fis= new FileInputStream(file);
-            bis = new BufferedInputStream(fis);
-            player = new Player(bis);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+            // Open an audio input stream.
+            URL url = this.getClass().getClassLoader().getResource("gameover.wav");
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
+            // Get a sound clip resource.
+            Clip clip = AudioSystem.getClip();
+            // Open audio clip and load samples from the audio input stream.
+            clip.open(audioIn);
+            clip.start();
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
         }
     }
-    public int getTime(){
-        if(player==null){
-            return 0;
-        }
-        return player.getPosition();
-    }
-    public void close(){
-        isLoop=false;
-        player.close();
-        this.interrupt();
-    }
-    @Override
-    public void run(){
-        try {
-            do {
-                player.play();
-                fis= new FileInputStream(file);
-                bis = new BufferedInputStream(fis);
-                player = new Player(bis);
-            } while(isLoop);
-        }catch (Exception e){
-            System.out.println(e.getMessage());
-        }
+
+    public static void main(String[] args) {
+        new SoundClipTest();
     }
 }
