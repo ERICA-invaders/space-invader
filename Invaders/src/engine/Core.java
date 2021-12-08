@@ -84,6 +84,7 @@ public final class Core {
 	 */
 	public static void main(final String[] args) {
 		try {
+
 			LOGGER.setUseParentHandlers(false);
 
 			fileHandler = new FileHandler("log");
@@ -95,7 +96,7 @@ public final class Core {
 			LOGGER.addHandler(fileHandler);
 			LOGGER.addHandler(consoleHandler);
 			LOGGER.setLevel(Level.ALL);
-
+			SoundManager.instance.playBGM();
 		} catch (Exception e) {
 			// TODO handle exception
 			e.printStackTrace();
