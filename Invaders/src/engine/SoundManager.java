@@ -1,5 +1,7 @@
 package engine;
 
+import jdk.javadoc.internal.doclets.formats.html.markup.Head;
+
 import java.io.*;
 import java.net.URL;
 import java.util.Objects;
@@ -11,13 +13,21 @@ public class SoundManager {
         eGetItem,
         eBullet,
         eDamage,
-        eDie
+        eDie,
+        eBumb,
+        eHeadShot,
+        eGameOver,
+        eStageClear
     };
     private String BGM="/Sounds/BGM.wav";
     private String GetItem = "/Sounds/SFX/GetItem.wav";
     private String Bullet = "/Sounds/SFX/Bullet.wav";
     private String Damage = "/Sounds/SFX/Damage.wav";
     private String Die = "/Sounds/SFX/Die.wav";
+    private String Bumb = "/Sounds/SFX/Bumb.wav";
+    private String HeadShot = "/Sounds/SFX/HeadShot.wav";
+    private String GameOver = "/Sounds/SFX/GameOver.wav";
+    private String StageClear = "/Sounds/SFX/StageClear.wav";
     public void playBGM(){
         new Thread(new Runnable() {
             // The wrapper thread is unnecessary, unless it blocks on the
@@ -69,8 +79,29 @@ public class SoundManager {
                         clip.open(inputStream);
                         clip.start();
                     }
-                    else{
-                        URL url = this.getClass().getResource(GetItem);
+                    else if(effect==eSFX.eBumb){
+                        URL url = this.getClass().getResource(Bumb);
+                        Clip clip = AudioSystem.getClip();
+                        AudioInputStream inputStream = AudioSystem.getAudioInputStream(url);
+                        clip.open(inputStream);
+                        clip.start();
+                    }
+                    else if(effect==eSFX.eHeadShot){
+                        URL url = this.getClass().getResource(HeadShot);
+                        Clip clip = AudioSystem.getClip();
+                        AudioInputStream inputStream = AudioSystem.getAudioInputStream(url);
+                        clip.open(inputStream);
+                        clip.start();
+                    }
+                    else if(effect==eSFX.eGameOver){
+                        URL url = this.getClass().getResource(GameOver);
+                        Clip clip = AudioSystem.getClip();
+                        AudioInputStream inputStream = AudioSystem.getAudioInputStream(url);
+                        clip.open(inputStream);
+                        clip.start();
+                    }
+                    else if(effect==eSFX.eStageClear){
+                        URL url = this.getClass().getResource(StageClear);
                         Clip clip = AudioSystem.getClip();
                         AudioInputStream inputStream = AudioSystem.getAudioInputStream(url);
                         clip.open(inputStream);
