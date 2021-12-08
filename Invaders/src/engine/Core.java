@@ -96,9 +96,7 @@ public final class Core {
 			LOGGER.addHandler(fileHandler);
 			LOGGER.addHandler(consoleHandler);
 			LOGGER.setLevel(Level.ALL);
-
-			SoundManager s= new SoundManager();
-			s.playBGM();
+			SoundManager.instance.playBGM();
 		} catch (Exception e) {
 			// TODO handle exception
 			e.printStackTrace();
