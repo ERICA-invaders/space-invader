@@ -180,6 +180,6 @@ public class EnemyShip extends Entity {
 	}
 
 	public final byte getAlpha() {
-		return (byte) (255f * this.life / this.maxLife);
+		return (byte) ((205d * this.life / this.maxLife) + 50);
 	}
 }
