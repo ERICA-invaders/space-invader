@@ -27,6 +27,9 @@ public class Ship extends Entity {
 	/** Time spent inactive between hits. */
 	private Cooldown destructionCooldown;
 
+	private static double saveshootingCooldown;
+
+
 	/**
 	 * Constructor, establishes the ship's properties.
 	 * 
@@ -41,6 +44,7 @@ public class Ship extends Entity {
 		this.spriteType = SpriteType.Ship;
 		this.shootingCooldown = Core.getCooldown(SHOOTING_INTERVAL);
 		this.destructionCooldown = Core.getCooldown(1000);
+		saveshootingCooldown = this.shootingCooldown.getduration() * 0.5;
 	}
 
 	/**
@@ -115,7 +119,11 @@ public class Ship extends Entity {
 		SPEED = setspeed;
 	}
 
-	public final Cooldown getShootingCooldown() {
+	public static final double getSaveShootingCooldown() {
+		return saveshootingCooldown;
+	}
+
+	public Cooldown getShootingCooldown() {
 		return this.shootingCooldown;
 	}
 }

@@ -3,6 +3,8 @@ package screen;
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import engine.*;
 import engine.DrawManager.SpriteType;
@@ -139,6 +141,7 @@ public class GameScreen extends Screen {
     private long save = 0;
     private static int option = 2;
     private Set<Item> items;
+    private static int headShot = 0;
 
     /**
      * Constructor, establishes the properties of the screen.
@@ -262,8 +265,10 @@ public class GameScreen extends Screen {
                     this.ship.moveLeft();
                 }
                 if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
-                    if (this.ship.shoot(this.bullets))
+                    if (this.ship.shoot(this.bullets)) {
                         this.bulletsShot++;
+                        if (headShot > 0) headShot--;
+                    }
             }
 
             if (this.enemyShipSpecial != null) {
@@ -487,7 +492,8 @@ public class GameScreen extends Screen {
                         if (this.enemyShipFormation.destroy(enemyShip)) {
                             this.shipsDestroyed++;
                             this.score += enemyShip.getPointValue();
-                            enemyShip.drop(items, enemyShip.getPositionX(), enemyShip.getPositionY(), 2);
+                            int random = (int) (Math.random() * 999);
+                            if (random < 1000) enemyShip.drop(items, enemyShip.getPositionX(), enemyShip.getPositionY());
                         }
                         recyclable.add(bullet);
                     }
@@ -510,8 +516,32 @@ public class GameScreen extends Screen {
                     recyclable.add(bullet);
                 }
             }
+        for (Item item : this.items) {
+            if (checkCollisionItem(item, this.ship) && !this.levelFinished) {
+                this.logger.info("item get");
+                recyclableItem.add(item);
+                if (!this.ship.isDestroyed()) {
+                    int random = (int)(Math.random() * 999);
+                    if (item.getSpriteType() == SpriteType.NegativeItems) {
+                        if (random < 500) {
+                            speedDown();
+                        }
+                        else item.snare();
+                    } else {
+                        if (random < 250) {
+                            speedUp();
+                        }
+                        else if (random < 500) item.bonusLife();
+                        else if (random < 750) item.bomb();
+                        else item.headshot();
+                    }
+                }
+            }
+        }
         this.bullets.removeAll(recyclable);
         BulletPool.recycle(recyclable);
+        this.items.removeAll(recyclableItem);
+        ItemPool.recycle(recyclableItem);
     }
 
     /**
@@ -521,6 +551,22 @@ public class GameScreen extends Screen {
      * @param b Second entity, the ship.
      * @return Result of the collision test.
      */
+    private boolean checkCollisionItem (final  Entity a, final  Entity b) {
+        // Calculate center point of the entities in both axis.
+        int centerAX = a.getPositionX() + a.getWidth() / 3 + 30;
+        int centerAY = a.getPositionY() + a.getHeight() / 2 + 10;
+        int centerBX = b.getPositionX() + b.getWidth() / 2;
+        int centerBY = b.getPositionY() + b.getHeight() / 2;
+        // Calculate maximum distance without collision.
+        int maxDistanceX = a.getWidth() / 2 + b.getWidth() / 2;
+        int maxDistanceY = a.getHeight() / 2 + b.getHeight() / 2;
+        // Calculates distance.
+        int distanceX = Math.abs(centerAX - centerBX);
+        int distanceY = Math.abs(centerAY - centerBY);
+
+        return distanceX < maxDistanceX && distanceY < maxDistanceY;
+    }
+
     private boolean checkCollision(final Entity a, final Entity b) {
         // Calculate center point of the entities in both axis.
         int centerAX = a.getPositionX() + a.getWidth() / 3 - 10;
@@ -551,15 +597,71 @@ public class GameScreen extends Screen {
         return this.option;
     }
 
-    public static final int getlives() {return lives;}
+    public static final int getlives() {
+        return lives;
+    }
 
-    public static final void setlives(int setlives) {lives = setlives;}
+    public static final void setlives(int setlives) {
+        lives = setlives;
+    }
 
-    public static final int getScore() {return score;}
+    public static final int getScore() {
+        return score;
+    }
 
-    public static final void setScore(int setscore) {score = setscore;}
+    public static final void setScore(int setscore) {
+        score = setscore;
+    }
 
-    public static final int getShipsDestroyed() {return shipsDestroyed;}
+    public static final int getShipsDestroyed() {
+        return shipsDestroyed;
+    }
 
-    public static final void setShipsDestroyed(int setshipdestroyed) {shipsDestroyed = setshipdestroyed;}
+    public static final void setShipsDestroyed(int setshipdestroyed) {
+        shipsDestroyed = setshipdestroyed;
+    }
+
+    public static final void setHeadShot(int setheadshot) {
+        headShot = setheadshot;
+    }
+
+    public static final int getHeadShot() {
+        return headShot;
+    }
+
+    Timer timer;
+
+    public class SpeedUpClear extends TimerTask {
+        public void run() {
+            logger.info("speedUpClear");
+            ship.setSpeed((ship.getSpeed() * 2.0f / 3.0f));
+            ship.getShootingCooldown().setduration((int)(ship.getShootingCooldown().getduration() * 1.5));
+            timer.cancel();
+        }
+    }
+
+    public class SpeedDownClear extends TimerTask {
+        public void run() {
+            logger.info("speedDownClear");
+            ship.setSpeed((ship.getSpeed() * 2.0f));
+            ship.getShootingCooldown().setduration((int)(ship.getShootingCooldown().getduration() * 2.0 / 3));
+            timer.cancel();
+        }
+    }
+
+    public final void speedUp() {
+        timer = new Timer();
+        logger.info("speedUp");
+        this.ship.setSpeed((this.ship.getSpeed() * 1.5f));
+        this.ship.getShootingCooldown().setduration((int)(this.ship.getShootingCooldown().getduration() * 2.0 / 3));
+        timer.schedule(new SpeedUpClear(), 10000);
+    }
+
+    public final void speedDown() {
+        timer = new Timer();
+        logger.info("speedDown");
+        this.ship.setSpeed((this.ship.getSpeed() * 0.5f));
+        this.ship.getShootingCooldown().setduration((int)(this.ship.getShootingCooldown().getduration() * 1.5));
+        timer.schedule(new SpeedDownClear(), 10000);
+    }
 }

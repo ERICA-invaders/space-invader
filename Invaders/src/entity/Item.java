@@ -1,20 +1,23 @@
 package entity;
 
-import engine.Cooldown;
 import engine.DrawManager;
 import screen.GameScreen;
 import engine.Core;
+import entity.Ship;
 
 import java.awt.*;
-import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Logger;
 
 public class Item extends Entity {
 
     private static float savespeed = Ship.getSpeed();
-    //private int savecooldown = (int) (Ship.getshootingCooldown().getduration() * 0.5);
     private static int col = 0;
     private static int row = 0;
     private int speed;
+
+    private static Logger logger;
 
     /**
      * Constructor, establishes the entity's generic properties.
@@ -29,13 +32,14 @@ public class Item extends Entity {
         super(positionX, positionY, 3 * 2, 5 * 2, Color.WHITE);
 
         this.speed = speed;
+        logger = Core.getLogger();
 
         setSprite();
     }
 
     public final void setSprite() {
-        int random = (int) (Math.random() * 999);
-        if (random < 500) this.spriteType = DrawManager.SpriteType.PositiveItems;
+        int random = (int) (Math.random() * 900);
+        if (random < 600) this.spriteType = DrawManager.SpriteType.PositiveItems;
         else this.spriteType = DrawManager.SpriteType.NegativeItems;
     }
 
@@ -43,44 +47,39 @@ public class Item extends Entity {
         this.positionY += this.speed;
     }
 
-    public static void speedUp() {
-        Ship.setSpeed((float) (Ship.getSpeed() * 1.5));
-        //Ship.getshootingCooldown().setduration(Ship.getshootingCooldown().getduration() + savecooldown);
-    }
+    static Timer timer;
 
-    public static void speedUpClear() {
-        Ship.setSpeed((float) (Ship.getSpeed() * 2 / 3));
-    }
-
-    public static void speedDown() {
-        Ship.setSpeed((float) (Ship.getSpeed() * 0.5));
-        //Ship.getshootingCooldown().setduration(Ship.getshootingCooldown().getduration() - savecooldown);
-    }
-
-    public static void speedDownClear() {
-        Ship.setSpeed((float) (Ship.getSpeed() * 2.0));
+    public static class SnareClear extends TimerTask {
+        public void run() {
+            Item.logger.info("snareClear");
+            Ship.setSpeed(savespeed);
+            timer.cancel();
+        }
     }
 
     public static void snare() {
+        timer = new Timer();
+        Item.logger.info("snare");
         Ship.setSpeed(0);
-    }
-
-    public static void snareClear() {
-        Ship.setSpeed(savespeed);
+        timer.schedule(new SnareClear(), 5000);
     }
 
     public static void bonusLife() {
         if (GameScreen.getlives() != Core.getMAX_LIVES()) {
             GameScreen.setlives(GameScreen.getlives() + 1);
+            Item.logger.info("getBonusLife");
         }
+        Item.logger.info("bonusLife");
     }
 
     public static void bomb() {
         EnemyShipFormation.setisbomb(true);
+        Item.logger.info("bomb");
     }
 
     public static void headshot() {
-
+        GameScreen.setHeadShot(4);
+        Item.logger.info("headshot");
     }
 
     public static void setCol(int setcol) {col = setcol;}

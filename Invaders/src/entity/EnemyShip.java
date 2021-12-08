@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import engine.Cooldown;
 import engine.Core;
 import engine.DrawManager.SpriteType;
+import screen.GameScreen;
 
 /**
  * Implements a enemy ship, to be destroyed by the player.
@@ -37,6 +38,7 @@ public class EnemyShip extends Entity {
 
 	private int life;
 	private int maxLife;
+	private static final int ITEM_SPEED = 3;
 
 	/**
 	 * Constructor, establishes the ship's properties.
@@ -159,34 +161,12 @@ public class EnemyShip extends Entity {
 		}
 	}
 
-	Timer timer = new Timer();
-
-	TimerTask speedUpClear = new TimerTask() {
-		@Override
-		public void run() {
-			Item.speedUpClear();
-		}
-	};
-
-	TimerTask speedDownClear = new TimerTask() {
-		@Override
-		public void run() {
-			Item.speedDownClear();
-		}
-	};
-
-	TimerTask stunClear = new TimerTask() {
-		@Override
-		public void run() {
-			Item.snareClear();
-		}
-	};
-
 	/**
 	 * Destroys the ship, causing an explosion.
 	 */
 	public final boolean destroy() {
-		life--;
+		if (GameScreen.getHeadShot() > 0) life -= 20;
+		else life--;
 		if(life > 0) {
 			return false;
 		} else {
@@ -196,8 +176,8 @@ public class EnemyShip extends Entity {
 		}
 	}
 
-	public final void drop(final Set<Item> items, final int positionX, final int positionY, final int speed) {
-		items.add(ItemPool.getItem(positionX, positionY, speed));
+	public final void drop(final Set<Item> items, final int positionX, final int positionY) {
+		items.add(ItemPool.getItem(positionX, positionY, ITEM_SPEED));
 	}
 
 	/**
