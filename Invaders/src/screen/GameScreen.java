@@ -270,6 +270,7 @@ public class GameScreen extends Screen {
                     if (this.ship.shoot(this.bullets)) {
                         this.bulletsShot++;
                         if (headShot > 0) headShot--;
+                        this.logger.info("speed : " + ship.getSpeed());
                     }
             }
 
@@ -376,6 +377,7 @@ public class GameScreen extends Screen {
                         this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
                         this.ship.getShootingCooldown().setTime(this.ship.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
                         pause = false;
+                        mainmenu = false;
                     } else if (option == 3) {
                         // new game
                         level = 0;
@@ -386,6 +388,7 @@ public class GameScreen extends Screen {
                         this.isRunning = false;
                         this.option = 2;
                         score = -LIFE_SCORE * (Core.getMAX_LIVES() - 1);
+                        mainmenu = false;
                     }
                 }
             }
@@ -486,8 +489,6 @@ public class GameScreen extends Screen {
                         this.lives--;
                         this.logger.info("Hit on player ship, " + this.lives
                                 + " lives remaining.");
-                        Item.nomalSpeed();
-                        timer = new Timer();
                     }
                 }
             } else {
@@ -498,7 +499,7 @@ public class GameScreen extends Screen {
                             this.shipsDestroyed++;
                             this.score += enemyShip.getPointValue();
                             int random = (int) (Math.random() * 999);
-                            if (random < 1000) enemyShip.drop(items, enemyShip.getPositionX(), enemyShip.getPositionY());
+                            if (random < 150) enemyShip.drop(items, enemyShip.getPositionX(), enemyShip.getPositionY());
                         }
                         recyclable.add(bullet);
                     }
@@ -597,32 +598,12 @@ public class GameScreen extends Screen {
                 this.bulletsShot, this.shipsDestroyed);
     }
 
-    public final int getOption() {
-        return this.option;
-    }
-
     public static final int getlives() {
         return lives;
     }
 
     public static final void setlives(int setlives) {
         lives = setlives;
-    }
-
-    public static final int getScore() {
-        return score;
-    }
-
-    public static final void setScore(int setscore) {
-        score = setscore;
-    }
-
-    public static final int getShipsDestroyed() {
-        return shipsDestroyed;
-    }
-
-    public static final void setShipsDestroyed(int setshipdestroyed) {
-        shipsDestroyed = setshipdestroyed;
     }
 
     public static final void setHeadShot(int setheadshot) {
@@ -647,7 +628,8 @@ public class GameScreen extends Screen {
         public void run() {
             logger.info("speedUpClear");
             ship.setSpeed((ship.getSpeed() * 2.0f / 3.0f));
-            ship.getShootingCooldown().setduration((int)(ship.getShootingCooldown().getduration() * 1.5));
+            Item.setSaveSpeed((ship.getSpeed() * 2.0f / 3.0f));
+            ship.getShootingCooldown().setduration((int)(ship.getShootingCooldown().getduration() * 1.5f));
             timer.cancel();
         }
     }
@@ -656,7 +638,8 @@ public class GameScreen extends Screen {
         public void run() {
             logger.info("speedDownClear");
             ship.setSpeed((ship.getSpeed() * 2.0f));
-            ship.getShootingCooldown().setduration((int)(ship.getShootingCooldown().getduration() * 2.0 / 3));
+            Item.setSaveSpeed((ship.getSpeed() * 2.0f));
+            ship.getShootingCooldown().setduration((int)(ship.getShootingCooldown().getduration() * 2.0f / 3.0f));
             timer.cancel();
         }
     }
@@ -665,7 +648,8 @@ public class GameScreen extends Screen {
         timer = new Timer();
         logger.info("speedUp");
         this.ship.setSpeed((this.ship.getSpeed() * 1.5f));
-        this.ship.getShootingCooldown().setduration((int)(this.ship.getShootingCooldown().getduration() * 2.0 / 3));
+        Item.setSaveSpeed((ship.getSpeed() * 1.5f));
+        this.ship.getShootingCooldown().setduration((int)(this.ship.getShootingCooldown().getduration() * 2.0f / 3.0f));
         timer.schedule(new SpeedUpClear(), 10000);
     }
 
@@ -673,7 +657,8 @@ public class GameScreen extends Screen {
         timer = new Timer();
         logger.info("speedDown");
         this.ship.setSpeed((this.ship.getSpeed() * 0.5f));
-        this.ship.getShootingCooldown().setduration((int)(this.ship.getShootingCooldown().getduration() * 1.5));
+        Item.setSaveSpeed((ship.getSpeed() * 0.5f));
+        this.ship.getShootingCooldown().setduration((int)(this.ship.getShootingCooldown().getduration() * 1.5f));
         timer.schedule(new SpeedDownClear(), 10000);
     }
 }

@@ -21,7 +21,7 @@ public class Ship extends Entity {
 	private static final int BULLET_SPEED = -6;
 	/** Movement of the ship for each unit of time. */
 	private static float SPEED = 2.0f;
-	
+
 	/** Minimum time between shots. */
 	private Cooldown shootingCooldown;
 	/** Time spent inactive between hits. */
@@ -118,9 +118,5 @@ public class Ship extends Entity {
 
 	public Cooldown getShootingCooldown() {
 		return this.shootingCooldown;
-	}
-
-	public final void setSpriteType(SpriteType setspritetype) {
-		this.spriteType = setspritetype;
 	}
 }

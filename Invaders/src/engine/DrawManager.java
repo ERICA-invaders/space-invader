@@ -376,10 +376,10 @@ public final class DrawManager {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.WHITE);
 		backBufferGraphics.drawString(Integer.toString(lives), 20, 25);
-		Ship dummyShip = new Ship(0,0);
-		dummyShip.setSpriteType(SpriteType.Life);
+		Item life = new Item(0, 0, 0);
+		life.setSpriteType(SpriteType.Life);
 		for (int i = 0; i < lives; i++)
-			drawEntity(dummyShip, 65 + 60 * i, 15);
+			drawEntity(life, 25 + 35 * i, 15);
 	}
 
 	/**

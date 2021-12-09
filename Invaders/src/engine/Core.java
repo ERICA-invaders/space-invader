@@ -8,7 +8,6 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import entity.Item;
 import screen.GameScreen;
 import screen.HighScoreScreen;
 import screen.ScoreScreen;
@@ -136,7 +135,6 @@ public final class Core {
 				// Game & score.
 				do {
 					GameScreen.setmainmenu(false);
-					Item.nomalSpeed();
 					// One extra live every few levels.
 					boolean bonusLife = gameState.getLevel()
 							% EXTRA_LIFE_FRECUENCY == 0

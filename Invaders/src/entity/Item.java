@@ -3,7 +3,6 @@ package entity;
 import engine.DrawManager;
 import screen.GameScreen;
 import engine.Core;
-import entity.Ship;
 
 import java.awt.*;
 import java.util.Timer;
@@ -13,8 +12,6 @@ import java.util.logging.Logger;
 public class Item extends Entity {
 
     private static float savespeed = Ship.getSpeed();
-    private static int col = 0;
-    private static int row = 0;
     private int speed;
 
     private static Logger logger;
@@ -29,7 +26,7 @@ public class Item extends Entity {
      * @param color
      */
     public Item(int positionX, int positionY, int speed) {
-        super(positionX, positionY, 3 * 2, 5 * 2, Color.WHITE);
+        super(positionX, positionY, 3 * 3, 5 * 2, Color.WHITE);
 
         this.speed = speed;
         logger = Core.getLogger();
@@ -60,6 +57,7 @@ public class Item extends Entity {
     public static void snare() {
         timer = new Timer();
         Item.logger.info("snare");
+        savespeed = Ship.getSpeed();
         Ship.setSpeed(0);
         timer.schedule(new SnareClear(), 5000);
     }
@@ -90,11 +88,11 @@ public class Item extends Entity {
         return this.speed;
     }
 
-    public static final void nomalSpeed() {
-        Ship.setSpeed(savespeed);
-    }
-
     public final void setSpriteType(DrawManager.SpriteType setspritetype) {
         this.spriteType = setspritetype;
+    }
+
+    public static final void setSaveSpeed(float setsavespeed) {
+        savespeed = setsavespeed;
     }
 }
