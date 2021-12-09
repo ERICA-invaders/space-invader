@@ -135,6 +135,7 @@ public final class Core {
 			case 2:
 				// Game & score.
 				do {
+					if (gameState.getLevel() != 1) SoundManager.instance.playSFX(SoundManager.eSFX.eStageClear);
 					GameScreen.setmainmenu(false);
 					// One extra live every few levels.
 					boolean bonusLife = gameState.getLevel()
@@ -164,6 +165,7 @@ public final class Core {
 					returnCode = 1;
 					break;
 				}
+				if (gameState.getLivesRemaining() == 0) SoundManager.instance.playSFX(SoundManager.eSFX.eGameOver);
 
 				LOGGER.info("Starting " + WIDTH + "x" + HEIGHT
 						+ " score screen at " + FPS + " fps, with a score of "

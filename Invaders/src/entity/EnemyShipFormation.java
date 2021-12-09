@@ -3,13 +3,10 @@ package entity;
 import java.util.*;
 import java.util.logging.Logger;
 
+import engine.*;
 import screen.GameScreen;
 import screen.Screen;
-import engine.Cooldown;
-import engine.Core;
-import engine.DrawManager;
 import engine.DrawManager.SpriteType;
-import engine.GameSettings;
 
 /**
  * Groups enemy ships into a formation that moves together.
@@ -457,6 +454,7 @@ public class EnemyShipFormation implements Iterable<EnemyShip> {
         EnemyShip shooter = this.shooters.get(index);
 
         if (this.shootingCooldown.checkFinished()) {
+            SoundManager.instance.playSFX(SoundManager.eSFX.eBullet);
             this.shootingCooldown.reset();
             bullets.add(BulletPool.getBullet(shooter.getPositionX()
                     + shooter.width, shooter.getPositionY() + shooter.height, BULLET_SPEED));
