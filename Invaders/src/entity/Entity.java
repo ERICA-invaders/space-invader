@@ -121,4 +121,8 @@ public class Entity {
 	public final int getHeight() {
 		return this.height;
 	}
+
+	public final void setColor(Color setcolor) {
+		this.color = setcolor;
+	}
 }

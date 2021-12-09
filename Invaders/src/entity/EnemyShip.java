@@ -85,12 +85,15 @@ public class EnemyShip extends Entity {
 	 */
 	public EnemyShip() {
 		super(-32, 60, 16 * 2, 7 * 2, Color.RED);
-
+		int random = (int)(Math.random() * 999);
 		this.spriteType = SpriteType.EnemyShipSpecial;
 		this.isDestroyed = false;
-		this.pointValue = BONUS_TYPE_POINTS;
-
 		this.life = this.maxLife = 1;
+		if (random < 500) {
+			this.pointValue = BONUS_TYPE_POINTS;
+		} else {
+			this.setColor(Color.GREEN);
+		}
 	}
 
 	/**

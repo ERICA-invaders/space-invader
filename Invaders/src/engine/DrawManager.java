@@ -10,10 +10,10 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import entity.EnemyShip;
+import entity.Item;
 import screen.Screen;
 import entity.Entity;
 import entity.Ship;
-import entity.Item;
 
 import javax.imageio.ImageIO;
 
@@ -92,8 +92,8 @@ public final class DrawManager {
 		PositiveItems("/Items/PositiveItems.png", "item"),
 		/** Negative item. */
 		NegativeItems("/Items/NegativeItems.png", "item"),
-		/** life */
-		Life("/Item/Life.png", "item"),
+		/** Life */
+		Life("/Items/Life.png", "item"),
 		/** Destroyed enemy ship. */
 		Explosion;
 
@@ -376,9 +376,10 @@ public final class DrawManager {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.WHITE);
 		backBufferGraphics.drawString(Integer.toString(lives), 20, 25);
-		Item life = new Item(0,0,0);
+		Ship dummyShip = new Ship(0,0);
+		dummyShip.setSpriteType(SpriteType.Life);
 		for (int i = 0; i < lives; i++)
-			drawEntity(life, 65 + 60 * i, 15);
+			drawEntity(dummyShip, 65 + 60 * i, 15);
 	}
 
 	/**

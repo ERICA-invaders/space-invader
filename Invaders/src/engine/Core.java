@@ -8,6 +8,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import entity.Item;
 import screen.GameScreen;
 import screen.HighScoreScreen;
 import screen.ScoreScreen;
@@ -134,6 +135,8 @@ public final class Core {
 			case 2:
 				// Game & score.
 				do {
+					GameScreen.setmainmenu(false);
+					Item.nomalSpeed();
 					// One extra live every few levels.
 					boolean bonusLife = gameState.getLevel()
 							% EXTRA_LIFE_FRECUENCY == 0
@@ -158,7 +161,7 @@ public final class Core {
 				} while (gameState.getLivesRemaining() > 0
 						&& gameState.getLevel() <= NUM_LEVELS);
 
-				if (((GameScreen) currentScreen).getOption() == 2) {
+				if (GameScreen.getmainmenu()) {
 					returnCode = 1;
 					break;
 				}

@@ -1,5 +1,6 @@
 package screen;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
@@ -142,6 +143,7 @@ public class GameScreen extends Screen {
     private static int option = 2;
     private Set<Item> items;
     private static int headShot = 0;
+    private static boolean mainmenu = false;
 
     /**
      * Constructor, establishes the properties of the screen.
@@ -368,6 +370,7 @@ public class GameScreen extends Screen {
                         pause = false;
                         this.isRunning = false;
                         this.option = 2;
+                        mainmenu = true;
                     } else if (option == 2) {
                         // resume
                         this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
@@ -483,6 +486,8 @@ public class GameScreen extends Screen {
                         this.lives--;
                         this.logger.info("Hit on player ship, " + this.lives
                                 + " lives remaining.");
+                        Item.nomalSpeed();
+                        timer = new Timer();
                     }
                 }
             } else {
@@ -500,7 +505,11 @@ public class GameScreen extends Screen {
                 if (this.enemyShipSpecial != null
                         && !this.enemyShipSpecial.isDestroyed()
                         && checkCollision(bullet, this.enemyShipSpecial)) {
-                    this.score += this.enemyShipSpecial.getPointValue();
+                    if (enemyShipSpecial.getColor() == Color.GREEN) {
+                        this.enemyShipSpecial.drop(items, this.enemyShipSpecial.getPositionX(), this.enemyShipSpecial.getPositionY());
+                    } else {
+                        this.score += this.enemyShipSpecial.getPointValue();
+                    }
                     this.shipsDestroyed++;
                     this.enemyShipSpecial.destroy();
                     this.enemyShipSpecialExplosionCooldown.reset();
@@ -521,18 +530,13 @@ public class GameScreen extends Screen {
                 this.logger.info("item get");
                 recyclableItem.add(item);
                 if (!this.ship.isDestroyed()) {
-                    int random = (int)(Math.random() * 999);
+                    int random = (int)(Math.random() * 900);
                     if (item.getSpriteType() == SpriteType.NegativeItems) {
-                        if (random < 500) {
-                            speedDown();
-                        }
+                        if (random < 450) speedDown();
                         else item.snare();
                     } else {
-                        if (random < 250) {
-                            speedUp();
-                        }
-                        else if (random < 500) item.bonusLife();
-                        else if (random < 750) item.bomb();
+                        if (random < 300) speedUp();
+                        else if (random < 600) item.bonusLife();
                         else item.headshot();
                     }
                 }
@@ -627,6 +631,14 @@ public class GameScreen extends Screen {
 
     public static final int getHeadShot() {
         return headShot;
+    }
+
+    public static final boolean getmainmenu() {
+        return mainmenu;
+    }
+
+    public static final void setmainmenu(boolean setmenu) {
+        mainmenu = setmenu;
     }
 
     Timer timer;

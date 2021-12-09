@@ -72,19 +72,15 @@ public class Item extends Entity {
         Item.logger.info("bonusLife");
     }
 
-    public static void bomb() {
-        EnemyShipFormation.setisbomb(true);
-        Item.logger.info("bomb");
-    }
+//    public static void bomb() {
+//        //EnemyShipFormation.setisbomb(true);
+//        Item.logger.info("bomb");
+//    }
 
     public static void headshot() {
         GameScreen.setHeadShot(4);
         Item.logger.info("headshot");
     }
-
-    public static void setCol(int setcol) {col = setcol;}
-
-    public static void setRow(int setrow) {row = setrow;}
 
     public final void setSpeed(final int speed) {
         this.speed = speed;
@@ -92,5 +88,13 @@ public class Item extends Entity {
 
     public final int getSpeed() {
         return this.speed;
+    }
+
+    public static final void nomalSpeed() {
+        Ship.setSpeed(savespeed);
+    }
+
+    public final void setSpriteType(DrawManager.SpriteType setspritetype) {
+        this.spriteType = setspritetype;
     }
 }
