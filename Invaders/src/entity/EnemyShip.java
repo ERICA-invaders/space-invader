@@ -8,6 +8,7 @@ import java.util.TimerTask;
 import engine.Cooldown;
 import engine.Core;
 import engine.DrawManager.SpriteType;
+import engine.SoundManager;
 import screen.GameScreen;
 
 /**
@@ -171,8 +172,10 @@ public class EnemyShip extends Entity {
 		if (GameScreen.getHeadShot() > 0) life -= 20;
 		else life--;
 		if(life > 0) {
+			SoundManager.instance.playSFX(SoundManager.eSFX.eDamage);
 			return false;
 		} else {
+			SoundManager.instance.playSFX(SoundManager.eSFX.eDie);
 			this.isDestroyed = true;
 			this.spriteType = SpriteType.Explosion;
 			return true;

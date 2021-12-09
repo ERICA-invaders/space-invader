@@ -206,7 +206,6 @@ public class GameScreen extends Screen {
         this.gameStartTime = System.currentTimeMillis();
         this.inputDelay = Core.getCooldown(INPUT_DELAY);
         this.inputDelay.reset();
-
     }
 
     /**
@@ -269,7 +268,10 @@ public class GameScreen extends Screen {
                 if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
                     if (this.ship.shoot(this.bullets)) {
                         this.bulletsShot++;
-                        if (headShot > 0) headShot--;
+                        if (headShot > 0) {
+                            headShot--;
+                            SoundManager.instance.playSFX(SoundManager.eSFX.eHeadShot);
+                        }
                         this.logger.info("speed : " + ship.getSpeed());
                     }
             }
@@ -485,6 +487,7 @@ public class GameScreen extends Screen {
                 if (checkCollision(bullet, this.ship) && !this.levelFinished) {
                     recyclable.add(bullet);
                     if (!this.ship.isDestroyed()) {
+                        SoundManager.instance.playSFX(SoundManager.eSFX.eDie);
                         this.ship.destroy();
                         this.lives--;
                         this.logger.info("Hit on player ship, " + this.lives
@@ -531,6 +534,7 @@ public class GameScreen extends Screen {
                 this.logger.info("item get");
                 recyclableItem.add(item);
                 if (!this.ship.isDestroyed()) {
+                    SoundManager.instance.playSFX(SoundManager.eSFX.eGetItem);
                     int random = (int)(Math.random() * 900);
                     if (item.getSpriteType() == SpriteType.NegativeItems) {
                         if (random < 450) speedDown();
