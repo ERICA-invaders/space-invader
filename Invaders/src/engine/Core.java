@@ -135,6 +135,7 @@ public final class Core {
 			case 2:
 				// Game & score.
 				do {
+					GameScreen.setmainmenu(false);
 					// One extra live every few levels.
 					boolean bonusLife = gameState.getLevel()
 							% EXTRA_LIFE_FRECUENCY == 0
@@ -159,7 +160,7 @@ public final class Core {
 				} while (gameState.getLivesRemaining() > 0
 						&& gameState.getLevel() <= NUM_LEVELS);
 
-				if (((GameScreen) currentScreen).getOption() == 2) {
+				if (GameScreen.getmainmenu()) {
 					returnCode = 1;
 					break;
 				}

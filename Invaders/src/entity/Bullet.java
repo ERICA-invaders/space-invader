@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import engine.Cooldown;
 import engine.DrawManager.SpriteType;
+import screen.GameScreen;
 
 /**
  * Implements a bullet that moves vertically up or down.
@@ -47,8 +48,10 @@ public class Bullet extends Entity {
 	 * Sets correct sprite for the bullet, based on speed.
 	 */
 	public final void setSprite() {
-		if (speed < 0)
-			this.spriteType = SpriteType.Bullet;
+		if (speed < 0) {
+			if (GameScreen.getHeadShot() > 0) this.spriteType = SpriteType.Bullet2;
+			else this.spriteType = SpriteType.Bullet;
+		}
 		else
 			this.spriteType = SpriteType.EnemyBullet;
 	}
@@ -58,8 +61,10 @@ public class Bullet extends Entity {
 	 */
 	public final void update() {
 		this.positionY += this.speed;
-		if (speed < 0)
-			this.spriteType = SpriteType.Bullet1;
+		if (speed < 0) {
+			if (GameScreen.getHeadShot() > 0) this.spriteType = SpriteType.Bullet2;
+			else this.spriteType = SpriteType.Bullet1;
+		}
 		else
 			this.spriteType = SpriteType.EnemyBullet1;
 	}

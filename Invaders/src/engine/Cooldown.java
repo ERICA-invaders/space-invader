@@ -77,4 +77,8 @@ public class Cooldown {
 	public void setTime(long settime) {
 		time = settime;
 	}
+
+	public final int getduration() {return duration;}
+
+	public final void setduration(int setduration) {duration = setduration;}
 }

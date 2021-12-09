@@ -1,17 +1,15 @@
 package screen;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import engine.*;
 import engine.DrawManager.SpriteType;
-import entity.Bullet;
-import entity.BulletPool;
-import entity.EnemyShip;
-import entity.EnemyShipFormation;
-import entity.Entity;
-import entity.Ship;
+import entity.*;
 
 /**
  * Implements the game screen, where the action happens.
@@ -112,11 +110,11 @@ public class GameScreen extends Screen {
     /**
      * Current score.
      */
-    private int score;
+    private static int score;
     /**
      * Player lives left.
      */
-    private int lives;
+    private static int lives;
     /**
      * Total bullets shot by the player.
      */
@@ -124,7 +122,7 @@ public class GameScreen extends Screen {
     /**
      * Total ships destroyed by the player.
      */
-    private int shipsDestroyed;
+    private static int shipsDestroyed;
     /**
      * Moment the game starts.
      */
@@ -143,6 +141,9 @@ public class GameScreen extends Screen {
     private Cooldown selectionCooldown;
     private long save = 0;
     private static int option = 2;
+    private Set<Item> items;
+    private static int headShot = 0;
+    private static boolean mainmenu = false;
 
     /**
      * Constructor, establishes the properties of the screen.
@@ -199,6 +200,7 @@ public class GameScreen extends Screen {
         this.bossShipPatternCooldown = Core.getCooldown(10000);
         this.screenFinishedCooldown = Core.getCooldown(SCREEN_CHANGE_INTERVAL);
         this.bullets = new HashSet<Bullet>();
+        this.items = new HashSet<Item>();
 
         // Special input delay / countdown.
         this.gameStartTime = System.currentTimeMillis();
@@ -265,8 +267,11 @@ public class GameScreen extends Screen {
                     this.ship.moveLeft();
                 }
                 if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
-                    if (this.ship.shoot(this.bullets))
+                    if (this.ship.shoot(this.bullets)) {
                         this.bulletsShot++;
+                        if (headShot > 0) headShot--;
+                        this.logger.info("speed : " + ship.getSpeed());
+                    }
             }
 
             if (this.enemyShipSpecial != null) {
@@ -323,8 +328,10 @@ public class GameScreen extends Screen {
         }
 
         manageCollisions();
-        if (!pause)
+        if (!pause) {
             cleanBullets();
+            cleanItems();
+        }
         draw();
 
         if (this.level != 8) {
@@ -364,11 +371,13 @@ public class GameScreen extends Screen {
                         pause = false;
                         this.isRunning = false;
                         this.option = 2;
+                        mainmenu = true;
                     } else if (option == 2) {
                         // resume
                         this.enemyShipFormation.getShootingCooldown().setTime(this.enemyShipFormation.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
                         this.ship.getShootingCooldown().setTime(this.ship.getShootingCooldown().getTime() + System.currentTimeMillis() - save);
                         pause = false;
+                        mainmenu = false;
                     } else if (option == 3) {
                         // new game
                         level = 0;
@@ -379,6 +388,7 @@ public class GameScreen extends Screen {
                         this.isRunning = false;
                         this.option = 2;
                         score = -LIFE_SCORE * (Core.getMAX_LIVES() - 1);
+                        mainmenu = false;
                     }
                 }
             }
@@ -409,6 +419,10 @@ public class GameScreen extends Screen {
         for (Bullet bullet : this.bullets)
             drawManager.drawEntity(bullet, bullet.getPositionX(),
                     bullet.getPositionY());
+
+        for (Item item : this.items)
+            drawManager.drawEntity(item, item.getPositionX(),
+                    item.getPositionY());
 
         // Interface.
         drawManager.drawScore(this, this.score);
@@ -448,11 +462,24 @@ public class GameScreen extends Screen {
         BulletPool.recycle(recyclable);
     }
 
+    private void cleanItems() {
+        Set<Item> recyclable = new HashSet<>();
+        for (Item item : this.items) {
+            item.update();
+            if (item.getPositionY() < SEPARATION_LINE_HEIGHT
+                    || item.getPositionY() > this.height)
+                recyclable.add(item);
+        }
+        this.items.removeAll(recyclable);
+        ItemPool.recycle(recyclable);
+    }
+
     /**
      * Manages collisions between bullets and ships.
      */
     private void manageCollisions() {
         Set<Bullet> recyclable = new HashSet<Bullet>();
+        Set<Item> recyclableItem = new HashSet<Item>();
         for (Bullet bullet : this.bullets)
             if (bullet.getSpeed() > 0) {
                 if (checkCollision(bullet, this.ship) && !this.levelFinished) {
@@ -471,13 +498,19 @@ public class GameScreen extends Screen {
                         if (this.enemyShipFormation.destroy(enemyShip)) {
                             this.shipsDestroyed++;
                             this.score += enemyShip.getPointValue();
+                            int random = (int) (Math.random() * 999);
+                            if (random < 150) enemyShip.drop(items, enemyShip.getPositionX(), enemyShip.getPositionY());
                         }
                         recyclable.add(bullet);
                     }
                 if (this.enemyShipSpecial != null
                         && !this.enemyShipSpecial.isDestroyed()
                         && checkCollision(bullet, this.enemyShipSpecial)) {
-                    this.score += this.enemyShipSpecial.getPointValue();
+                    if (enemyShipSpecial.getColor() == Color.GREEN) {
+                        this.enemyShipSpecial.drop(items, this.enemyShipSpecial.getPositionX(), this.enemyShipSpecial.getPositionY());
+                    } else {
+                        this.score += this.enemyShipSpecial.getPointValue();
+                    }
                     this.shipsDestroyed++;
                     this.enemyShipSpecial.destroy();
                     this.enemyShipSpecialExplosionCooldown.reset();
@@ -493,8 +526,27 @@ public class GameScreen extends Screen {
                     recyclable.add(bullet);
                 }
             }
+        for (Item item : this.items) {
+            if (checkCollisionItem(item, this.ship) && !this.levelFinished) {
+                this.logger.info("item get");
+                recyclableItem.add(item);
+                if (!this.ship.isDestroyed()) {
+                    int random = (int)(Math.random() * 900);
+                    if (item.getSpriteType() == SpriteType.NegativeItems) {
+                        if (random < 450) speedDown();
+                        else item.snare();
+                    } else {
+                        if (random < 300) speedUp();
+                        else if (random < 600) item.bonusLife();
+                        else item.headshot();
+                    }
+                }
+            }
+        }
         this.bullets.removeAll(recyclable);
         BulletPool.recycle(recyclable);
+        this.items.removeAll(recyclableItem);
+        ItemPool.recycle(recyclableItem);
     }
 
     /**
@@ -504,6 +556,22 @@ public class GameScreen extends Screen {
      * @param b Second entity, the ship.
      * @return Result of the collision test.
      */
+    private boolean checkCollisionItem (final  Entity a, final  Entity b) {
+        // Calculate center point of the entities in both axis.
+        int centerAX = a.getPositionX() + a.getWidth() / 3 + 30;
+        int centerAY = a.getPositionY() + a.getHeight() / 2 + 10;
+        int centerBX = b.getPositionX() + b.getWidth() / 2;
+        int centerBY = b.getPositionY() + b.getHeight() / 2;
+        // Calculate maximum distance without collision.
+        int maxDistanceX = a.getWidth() / 2 + b.getWidth() / 2;
+        int maxDistanceY = a.getHeight() / 2 + b.getHeight() / 2;
+        // Calculates distance.
+        int distanceX = Math.abs(centerAX - centerBX);
+        int distanceY = Math.abs(centerAY - centerBY);
+
+        return distanceX < maxDistanceX && distanceY < maxDistanceY;
+    }
+
     private boolean checkCollision(final Entity a, final Entity b) {
         // Calculate center point of the entities in both axis.
         int centerAX = a.getPositionX() + a.getWidth() / 3 - 10;
@@ -530,7 +598,67 @@ public class GameScreen extends Screen {
                 this.bulletsShot, this.shipsDestroyed);
     }
 
-    public final int getOption() {
-        return this.option;
+    public static final int getlives() {
+        return lives;
+    }
+
+    public static final void setlives(int setlives) {
+        lives = setlives;
+    }
+
+    public static final void setHeadShot(int setheadshot) {
+        headShot = setheadshot;
+    }
+
+    public static final int getHeadShot() {
+        return headShot;
+    }
+
+    public static final boolean getmainmenu() {
+        return mainmenu;
+    }
+
+    public static final void setmainmenu(boolean setmenu) {
+        mainmenu = setmenu;
+    }
+
+    Timer timer;
+
+    public class SpeedUpClear extends TimerTask {
+        public void run() {
+            logger.info("speedUpClear");
+            ship.setSpeed((ship.getSpeed() * 2.0f / 3.0f));
+            Item.setSaveSpeed((ship.getSpeed() * 2.0f / 3.0f));
+            ship.getShootingCooldown().setduration((int)(ship.getShootingCooldown().getduration() * 1.5f));
+            timer.cancel();
+        }
+    }
+
+    public class SpeedDownClear extends TimerTask {
+        public void run() {
+            logger.info("speedDownClear");
+            ship.setSpeed((ship.getSpeed() * 2.0f));
+            Item.setSaveSpeed((ship.getSpeed() * 2.0f));
+            ship.getShootingCooldown().setduration((int)(ship.getShootingCooldown().getduration() * 2.0f / 3.0f));
+            timer.cancel();
+        }
+    }
+
+    public final void speedUp() {
+        timer = new Timer();
+        logger.info("speedUp");
+        this.ship.setSpeed((this.ship.getSpeed() * 1.5f));
+        Item.setSaveSpeed((ship.getSpeed() * 1.5f));
+        this.ship.getShootingCooldown().setduration((int)(this.ship.getShootingCooldown().getduration() * 2.0f / 3.0f));
+        timer.schedule(new SpeedUpClear(), 10000);
+    }
+
+    public final void speedDown() {
+        timer = new Timer();
+        logger.info("speedDown");
+        this.ship.setSpeed((this.ship.getSpeed() * 0.5f));
+        Item.setSaveSpeed((ship.getSpeed() * 0.5f));
+        this.ship.getShootingCooldown().setduration((int)(this.ship.getShootingCooldown().getduration() * 1.5f));
+        timer.schedule(new SpeedDownClear(), 10000);
     }
 }

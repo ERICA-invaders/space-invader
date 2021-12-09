@@ -3,6 +3,7 @@ package entity;
 import java.util.*;
 import java.util.logging.Logger;
 
+import screen.GameScreen;
 import screen.Screen;
 import engine.Cooldown;
 import engine.Core;

@@ -1,10 +1,14 @@
 package entity;
 
 import java.awt.Color;
+import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import engine.Cooldown;
 import engine.Core;
 import engine.DrawManager.SpriteType;
+import screen.GameScreen;
 
 /**
  * Implements a enemy ship, to be destroyed by the player.
@@ -34,6 +38,7 @@ public class EnemyShip extends Entity {
 
 	private int life;
 	private int maxLife;
+	private static final int ITEM_SPEED = 3;
 
 	/**
 	 * Constructor, establishes the ship's properties.
@@ -80,12 +85,15 @@ public class EnemyShip extends Entity {
 	 */
 	public EnemyShip() {
 		super(-32, 60, 16 * 2, 7 * 2, Color.RED);
-
+		int random = (int)(Math.random() * 999);
 		this.spriteType = SpriteType.EnemyShipSpecial;
 		this.isDestroyed = false;
-		this.pointValue = BONUS_TYPE_POINTS;
-
 		this.life = this.maxLife = 1;
+		if (random < 500) {
+			this.pointValue = BONUS_TYPE_POINTS;
+		} else {
+			this.setColor(Color.GREEN);
+		}
 	}
 
 	/**
@@ -160,7 +168,8 @@ public class EnemyShip extends Entity {
 	 * Destroys the ship, causing an explosion.
 	 */
 	public final boolean destroy() {
-		life--;
+		if (GameScreen.getHeadShot() > 0) life -= 20;
+		else life--;
 		if(life > 0) {
 			return false;
 		} else {
@@ -168,6 +177,10 @@ public class EnemyShip extends Entity {
 			this.spriteType = SpriteType.Explosion;
 			return true;
 		}
+	}
+
+	public final void drop(final Set<Item> items, final int positionX, final int positionY) {
+		items.add(ItemPool.getItem(positionX, positionY, ITEM_SPEED));
 	}
 
 	/**

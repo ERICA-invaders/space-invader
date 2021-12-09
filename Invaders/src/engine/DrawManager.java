@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import entity.EnemyShip;
+import entity.Item;
 import screen.Screen;
 import entity.Entity;
 import entity.Ship;
@@ -87,6 +88,12 @@ public final class DrawManager {
 		BossShip1("/boss/spaceship3-2.png", "enemy"),
 		/** Boss enemy ship - second form. */
 		BossShip2("/boss/spaceship3-1.png", "enemy"),
+		/** Positive item. */
+		PositiveItems("/Items/PositiveItems.png", "item"),
+		/** Negative item. */
+		NegativeItems("/Items/NegativeItems.png", "item"),
+		/** Life */
+		Life("/Items/Life.png", "item"),
 		/** Destroyed enemy ship. */
 		Explosion;
 
@@ -156,6 +163,9 @@ public final class DrawManager {
 			pngSpriteMap.put(SpriteType.EnemyShipC2, null);
 			pngSpriteMap.put(SpriteType.BossShip1, null);
 			pngSpriteMap.put(SpriteType.BossShip2, null);
+			pngSpriteMap.put(SpriteType.PositiveItems, null);
+			pngSpriteMap.put(SpriteType.NegativeItems, null);
+			pngSpriteMap.put(SpriteType.Life, null);
 
 			fileManager.loadPngSprite(pngSpriteMap);
 			logger.info("Finished loading the sprites.");
@@ -249,6 +259,8 @@ public final class DrawManager {
 					drawEnemy(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
 				else if(spriteType.group == "ship")
 					drawShip(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
+				else if(spriteType.group == "item")
+					drawItem(entity, positionX, positionY, entity.getWidth(), entity.getHeight());
 				return;
 			}
 		}
@@ -261,6 +273,12 @@ public final class DrawManager {
 				if (image[i][j])
 					backBufferGraphics.drawRect(positionX + i * 2, positionY
 							+ j * 2, 1, 1);
+	}
+
+	public void drawItem(final Entity entity, final int positionX, final int positionY,
+						   final int width, final int height) {
+		backBufferGraphics.drawImage(pngSpriteMap.get(entity.getSpriteType()),
+				positionX + width * 2, positionY - height, width * 3 , height * 3, null);
 	}
 
 	public void drawBullet(final Entity entity, final int positionX, final int positionY,
@@ -358,9 +376,10 @@ public final class DrawManager {
 		backBufferGraphics.setFont(fontRegular);
 		backBufferGraphics.setColor(Color.WHITE);
 		backBufferGraphics.drawString(Integer.toString(lives), 20, 25);
-		Ship dummyShip = new Ship(0, 0);
+		Item life = new Item(0, 0, 0);
+		life.setSpriteType(SpriteType.Life);
 		for (int i = 0; i < lives; i++)
-			drawEntity(dummyShip, 65 + 60 * i, 15);
+			drawEntity(life, 25 + 35 * i, 15);
 	}
 
 	/**
