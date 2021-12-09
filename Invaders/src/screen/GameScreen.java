@@ -268,10 +268,8 @@ public class GameScreen extends Screen {
                 if (inputManager.isKeyDown(KeyEvent.VK_SPACE))
                     if (this.ship.shoot(this.bullets)) {
                         this.bulletsShot++;
-                        if (headShot > 0) {
-                            headShot--;
-                            SoundManager.instance.playSFX(SoundManager.eSFX.eHeadShot);
-                        }
+                        if (headShot > 1) SoundManager.instance.playSFX(SoundManager.eSFX.eHeadShot);
+                        if (headShot > 0) headShot--;
                         this.logger.info("speed : " + ship.getSpeed());
                     }
             }
