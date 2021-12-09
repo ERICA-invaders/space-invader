@@ -269,6 +269,7 @@ public class GameScreen extends Screen {
                     if (this.ship.shoot(this.bullets)) {
                         this.bulletsShot++;
                         if (headShot > 1) SoundManager.instance.playSFX(SoundManager.eSFX.eHeadShot);
+                        else SoundManager.instance.playSFX(SoundManager.eSFX.eBullet);
                         if (headShot > 0) headShot--;
                         this.logger.info("speed : " + ship.getSpeed());
                     }
